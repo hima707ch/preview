@@ -1,0 +1,1 @@
+import React from 'react'; const Header = () => { return ( <header className='flex items-center justify-between p-4 bg-gray-800 text-white'> <div className='logo'>Real Estate Website</div> <nav className='flex'> <a href='#' className='mr-4'>Home</a> <a href='#' className='mr-4'>Properties</a> <a href='#'>Contact</a> </nav> </header> ); }; export default Header;
