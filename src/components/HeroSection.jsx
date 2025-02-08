@@ -1,0 +1,1 @@
+import React from 'react'; export const HeroSection = () => { return (<section id='hero' className='p-8 bg-gray-200'> <h1 className='text-4xl font-bold'>Welcome to My Portfolio</h1> <p className='text-lg mt-4'>Showcasing my projects and experience</p> </section>); }
