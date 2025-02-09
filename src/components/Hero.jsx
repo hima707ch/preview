@@ -1,1 +1,12 @@
-import React from 'react'; const Hero = () => { return ( <section className='hero-section bg-gray-900 text-white flex items-center justify-center min-h-screen'> <div className='text-center'> <h1 className='text-4xl font-bold mb-4'>Find Your Dream Property</h1> <p className='text-lg mb-6'>Explore our wide range of properties for sale or rent</p> <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Get Started</button> </div> </section> ); }; export default Hero;
+import React from 'react';
+
+export const Hero = () => {
+  return (
+    <section className="bg-gray-100 py-20" id='12'>
+      <div className="container mx-auto px-4" id='13'>
+        <h2 className="text-4xl font-bold mb-4 text-center" id='14'>Welcome to My Portfolio</h2>
+        <p className="text-xl text-center text-gray-600" id='15'>I'm a passionate developer creating modern and engaging web experiences.</p>
+      </div>
+    </section>
+  );
+}
