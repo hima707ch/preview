@@ -1,11 +1,1 @@
-import React from 'react';
-
-export const Contact = () => {
-  return (
-    <section>
-      <h2>Contact Me</h2>
-      <p>Email: myemail@example.com</p>
-      <p>Phone: 123-456-7890</p>
-    </section>
-  );
-}
+import React from 'react'; const Contact = () => { return ( <section className='bg-gray-100 py-20' id='65'> <div className='container mx-auto px-4' id='66'> <h2 className='text-3xl font-bold mb-8' id='67'>Contact</h2> <div className='grid grid-cols-1 md:grid-cols-2 gap-8' id='68'> <div id='69'> <h3 className='text-2xl font-bold mb-4' id='70'>Get in Touch</h3> <p className='mb-4' id='71'>If you have any questions or would like to discuss a potential project, feel free to reach out to me. I'm always excited to connect with new people and explore opportunities.</p> <ul className='mb-8' id='72'> <li className='mb-2' id='73'><strong>Email:</strong> johndoe@example.com</li> <li className='mb-2' id='74'><strong>Phone:</strong> (123) 456-7890</li> <li id='75'><strong>Location:</strong> City, Country</li> </ul> <a href='mailto:johndoe@example.com' className='bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600' id='76'>Send Email</a> </div> <div id='77'> <h3 className='text-2xl font-bold mb-4' id='78'>Connect with Me</h3> <p className='mb-4' id='79'>You can also find me on social media platforms. Let's connect and stay in touch!</p> <ul className='flex space-x-4' id='80'> <li><a href='#' className='text-gray-600 hover:text-blue-500' id='81'><i className='fab fa-linkedin fa-2x'></i></a></li> <li><a href='#' className='text-gray-600 hover:text-blue-400' id='82'><i className='fab fa-twitter fa-2x'></i></a></li> <li><a href='#' className='text-gray-600 hover:text-black' id='83'><i className='fab fa-github fa-2x'></i></a></li> </ul> </div> </div> </div> </section> ); }; export default Contact;

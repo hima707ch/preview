@@ -1,16 +1,1 @@
-import React from 'react';
-import { Home } from './Home';
-import { About } from './About';
-import { Projects } from './Projects';
-import { Contact } from './Contact';
-
-export const Body = () => {
-  return (
-    <main>
-      <Home />
-      <About />
-      <Projects />
-      <Contact />
-    </main>
-  );
-}
+import React from 'react'; import Header from './Header'; import Hero from './Hero'; import About from './About'; import Projects from './Projects'; import Resume from './Resume'; import Contact from './Contact'; const Body = () => { return ( <div id='84'> <Header /> <Hero /> <About /> <Projects /> <Resume /> <Contact /> </div> ); }; export default Body;

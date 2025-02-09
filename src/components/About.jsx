@@ -1,10 +1,1 @@
-import React from 'react';
-
-export const About = () => {
-  return (
-    <section>
-      <h2>About Me</h2>
-      <p>I am a web developer with experience in React and Node.js.</p>
-    </section>
-  );
-}
+import React from 'react'; const About = () => { return ( <section className='py-20' id='15'> <div className='container mx-auto px-4' id='16'> <h2 className='text-3xl font-bold mb-8' id='17'>About Me</h2> <div className='grid grid-cols-1 md:grid-cols-2 gap-8' id='18'> <div id='19'> <p className='mb-4' id='20'>I'm a passionate software developer with 5 years of experience in web development. I specialize in building modern, responsive websites using the latest technologies and frameworks.</p> <p id='21'>I have a strong background in front-end development, with expertise in HTML, CSS, JavaScript, and React. I also have experience in back-end development using Node.js and Express.</p> </div> <div id='22'> <img src='profile.jpg' alt='John Doe' className='w-full rounded shadow' id='23' /> </div> </div> </div> </section> ); }; export default About;
