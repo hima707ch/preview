@@ -1,12 +1,1 @@
-import React from 'react';
-
-export const Hero = () => {
-  return (
-    <section className="bg-gray-100 py-20" id='12'>
-      <div className="container mx-auto px-4" id='13'>
-        <h2 className="text-4xl font-bold mb-4 text-center" id='14'>Welcome to My Portfolio</h2>
-        <p className="text-xl text-center text-gray-600" id='15'>I'm a passionate developer creating modern and engaging web experiences.</p>
-      </div>
-    </section>
-  );
-}
+import React from 'react'; export const Hero = () => { return (<section className='bg-blue-500 py-20 px-6' id='15'><div className='max-w-4xl mx-auto text-center' id='16'><h2 className='text-4xl font-bold text-white mb-4' id='17'>Find Your Dream Home</h2><p className='text-xl text-white mb-8' id='18'>Search our extensive collection of properties for sale or rent.</p><form className='flex justify-center' id='19'><input type='text' placeholder='Enter location or property type' className='w-full max-w-md py-2 px-4 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400' id='20'/><button type='submit' className='bg-white text-blue-500 font-semibold py-2 px-6 rounded-r-md hover:bg-blue-100 transition duration-300' id='21'>Search</button></form></div></section>); }
