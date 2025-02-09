@@ -1,1 +1,16 @@
-import React from 'react'; import { Header } from './Header'; import { Hero } from './Hero'; import { PropertyListing } from './PropertyListing'; import { ContactForm } from './ContactForm'; import { Map } from './Map'; import { Footer } from './Footer'; export const Body = () => { return (<div id='72'><Header /><Hero /><PropertyListing /><ContactForm /><Map /><Footer /></div>); }
+import React from 'react';
+import { Home } from './Home';
+import { About } from './About';
+import { Projects } from './Projects';
+import { Contact } from './Contact';
+
+export const Body = () => {
+  return (
+    <main>
+      <Home />
+      <About />
+      <Projects />
+      <Contact />
+    </main>
+  );
+}

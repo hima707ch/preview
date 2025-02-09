@@ -1,1 +1,17 @@
-import React from 'react'; export const Header = () => { return (<header className='bg-white shadow-md py-4 px-6 flex items-center justify-between' id='1'><div className='flex items-center' id='2'><img src='logo.png' alt='Real Estate Logo' className='h-10 w-auto mr-4' id='3'/><h1 className='text-2xl font-bold text-gray-800' id='4'>Real Estate Company</h1></div><nav id='5'><ul className='flex space-x-6' id='6'><li id='7'><a href='#' className='text-gray-600 hover:text-blue-500 transition duration-300' id='8'>Home</a></li><li id='9'><a href='#' className='text-gray-600 hover:text-blue-500 transition duration-300' id='10'>Properties</a></li><li id='11'><a href='#' className='text-gray-600 hover:text-blue-500 transition duration-300' id='12'>About</a></li><li id='13'><a href='#' className='text-gray-600 hover:text-blue-500 transition duration-300' id='14'>Contact</a></li></ul></nav></header>); }
+import React from 'react';
+
+export const Header = () => {
+  return (
+    <header>
+      <h1>My Portfolio</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Projects</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
