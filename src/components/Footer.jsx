@@ -1,9 +1,1 @@
-import React from 'react';
-
-export const Footer = () => {
-  return (
-    <footer>
-      <p>&copy; 2023 My Portfolio. All rights reserved.</p>
-    </footer>
-  );
-}
+import React from 'react'; const Footer = () => { return ( <footer className='bg-gray-800 text-white py-10' id='37'> <div className='container mx-auto px-4' id='38'> <div className='grid grid-cols-1 md:grid-cols-4 gap-8' id='39'> <div id='40'> <h4 className='text-lg font-semibold mb-4' id='41'>About Us</h4> <p className='text-gray-400' id='42'>We are a leading real estate company dedicated to helping you find your perfect home.</p> </div> <div id='43'> <h4 className='text-lg font-semibold mb-4' id='44'>Quick Links</h4> <ul className='space-y-2' id='45'> <li><a href='/' className='text-gray-400 hover:text-white transition duration-200' id='46'>Home</a></li> <li><a href='/properties' className='text-gray-400 hover:text-white transition duration-200' id='47'>Properties</a></li> <li><a href='/about' className='text-gray-400 hover:text-white transition duration-200' id='48'>About</a></li> <li><a href='/contact' className='text-gray-400 hover:text-white transition duration-200' id='49'>Contact</a></li> </ul> </div> <div id='50'> <h4 className='text-lg font-semibold mb-4' id='51'>Contact Us</h4> <p className='text-gray-400' id='52'>123 Main Street<br />City, State 12345<br />Phone: (123) 456-7890<br />Email: info@realestate.com</p> </div> <div id='53'> <h4 className='text-lg font-semibold mb-4' id='54'>Subscribe</h4> <form id='55'> <input type='email' placeholder='Your email address' className='bg-gray-700 text-white py-2 px-4 rounded-l focus:outline-none' id='56' /> <button type='submit' className='bg-blue-600 text-white py-2 px-4 rounded-r hover:bg-blue-700 transition duration-200' id='57'>Subscribe</button> </form> </div> </div> <hr className='my-8 border-gray-700' id='58' /> <p className='text-center text-gray-400' id='59'>&copy; {new Date().getFullYear()} RealEstate. All rights reserved.</p> </div> </footer> ); }; export default Footer;
