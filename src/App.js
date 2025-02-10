@@ -1,7 +1,5 @@
 import React from 'react'
-import BodyModule from "./components/Body";
-
-const Body = BodyModule?.default || BodyModule?.BodyHeader || (() => <div>Fallback</div>);
+import { Body } from "./components/Body";
 
 const App = () => {
   return (
