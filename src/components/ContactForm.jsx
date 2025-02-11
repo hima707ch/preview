@@ -1,4 +1,4 @@
-Here's the enhanced version of the ContactForm component with improved visual styling and animations:
+// Here's the enhanced version of the ContactForm component with improved visual styling and animations:
 
 import React from 'react';
 

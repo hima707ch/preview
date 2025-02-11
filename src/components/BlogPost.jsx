@@ -1,4 +1,4 @@
-Here's the enhanced version of the BlogPost component with improved visual design and animations:
+// Here's the enhanced version of the BlogPost component with improved visual design and animations:
 
 import React from 'react';
 

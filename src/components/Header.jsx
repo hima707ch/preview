@@ -1,4 +1,4 @@
-Here's the visually enhanced version of the Header component using Tailwind CSS:
+// Here's the visually enhanced version of the Header component using Tailwind CSS:
 
 import React from 'react';
 

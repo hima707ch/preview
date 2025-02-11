@@ -1,4 +1,4 @@
-Here's the enhanced version of the Hero component with modern design and animations:
+// Here's the enhanced version of the Hero component with modern design and animations:
 
 import React from 'react';
 

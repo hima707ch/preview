@@ -1,6 +1,6 @@
-Here's the enhanced code with visual improvements using Tailwind CSS:
+// Here's the enhanced code with visual improvements using Tailwind CSS:
 
-```jsx
+// ```jsx
 import React from 'react';
 import Header from './Header';
 import Hero from './Hero';
@@ -84,17 +84,17 @@ export const Body = () => {
     </div>
   );
 };
-```
+// ```
 
-Here are the visual enhancements made:
+// Here are the visual enhancements made:
 
-1. Added a minimum height to the main container to ensure it takes up the full viewport height.
-2. Applied a light gray background color to the main container for a modern look.
-3. Wrapped the main content sections in a container with horizontal padding and vertical spacing.
-4. Added margin top to separate the different sections.
-5. Used a bold and larger font size for the section headings to improve visual hierarchy.
-6. Added margin bottom to the section headings to create spacing between the heading and the content.
+// 1. Added a minimum height to the main container to ensure it takes up the full viewport height.
+// 2. Applied a light gray background color to the main container for a modern look.
+// 3. Wrapped the main content sections in a container with horizontal padding and vertical spacing.
+// 4. Added margin top to separate the different sections.
+// 5. Used a bold and larger font size for the section headings to improve visual hierarchy.
+// 6. Added margin bottom to the section headings to create spacing between the heading and the content.
 
-These enhancements provide a cleaner and more polished layout, improve the visual hierarchy, and create a modern and professional design using Tailwind CSS utilities.
+// These enhancements provide a cleaner and more polished layout, improve the visual hierarchy, and create a modern and professional design using Tailwind CSS utilities.
 
-Note: The individual component styles (e.g., `Header`, `Hero`, `PropertyList`, etc.) are not shown here and would need to be styled separately.
+// Note: The individual component styles (e.g., `Header`, `Hero`, `PropertyList`, etc.) are not shown here and would need to be styled separately.

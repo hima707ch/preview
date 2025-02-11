@@ -1,4 +1,4 @@
-Here's the enhanced version of the SearchFilters component with improved visual design and accessibility:
+// Here's the enhanced version of the SearchFilters component with improved visual design and accessibility:
 
 import React from 'react';
 
