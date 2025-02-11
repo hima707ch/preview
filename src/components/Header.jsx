@@ -1,1 +1,17 @@
-import React from 'react'; export const Header = () => { return (<header className='bg-white shadow-md' id='1'><div className='container mx-auto px-4 py-6 flex justify-between items-center' id='2'><h1 className='text-3xl font-bold text-gray-800' id='3'>Real Estate Co.</h1><nav id='4'><ul className='flex space-x-6' id='5'><li id='6'><a href='#' className='text-gray-600 hover:text-gray-800' id='7'>Home</a></li><li id='8'><a href='#' className='text-gray-600 hover:text-gray-800' id='9'>Properties</a></li><li id='10'><a href='#' className='text-gray-600 hover:text-gray-800' id='11'>About</a></li><li id='12'><a href='#' className='text-gray-600 hover:text-gray-800' id='13'>Contact</a></li></ul></nav></div></header>); }
+import React from 'react';
+
+export const Header = () => {
+  return (
+    <header>
+      <h1>Real Estate</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Properties</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
