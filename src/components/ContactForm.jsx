@@ -1,1 +1,61 @@
-import React from 'react'; export const ContactForm = () => { return (<section className='bg-gray-100 py-20' id='60'><div className='container mx-auto px-4' id='61'><h2 className='text-3xl font-bold mb-6 text-center' id='62'>Contact Us</h2><form className='max-w-lg mx-auto' id='63'><div className='mb-4' id='64'><label htmlFor='name' className='block text-gray-700 font-bold mb-2' id='65'>Name</label><input type='text' id='name' className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your name' /></div><div className='mb-4' id='66'><label htmlFor='email' className='block text-gray-700 font-bold mb-2' id='67'>Email</label><input type='email' id='email' className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your email' /></div><div className='mb-4' id='68'><label htmlFor='message' className='block text-gray-700 font-bold mb-2' id='69'>Message</label><textarea id='message' rows='5' className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your message'></textarea></div><div className='text-center' id='70'><button type='submit' className='bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition duration-300' id='71'>Send Message</button></div></form></div></section>); }
+Here's the enhanced version of the ContactForm component with improved visual styling and animations:
+
+import React from 'react';
+
+const ContactForm = () => {
+  return (
+    <section className="bg-gradient-to-r from-blue-100 to-purple-100 py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold mb-12 text-center text-gray-800 tracking-tight">
+          Contact Us
+        </h2>
+        <form className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-gray-700 font-semibold mb-2 transition duration-300 ease-in-out transform hover:text-blue-600">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="w-full px-4 py-3 rounded-md border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-gray-700 font-semibold mb-2 transition duration-300 ease-in-out transform hover:text-blue-600">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="w-full px-4 py-3 rounded-md border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="message" className="block text-gray-700 font-semibold mb-2 transition duration-300 ease-in-out transform hover:text-blue-600">
+              Message
+            </label>
+            <textarea
+              id="message"
+              className="w-full px-4 py-3 rounded-md border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out"
+              rows="5"
+              placeholder="Enter your message"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-8 py-3 rounded-md font-semibold tracking-wide hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default ContactForm;

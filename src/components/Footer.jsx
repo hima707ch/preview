@@ -1,1 +1,37 @@
-import React from 'react'; export const Footer = () => { return (<footer className='bg-gray-800 text-white py-8' id='72'><div className='container mx-auto px-4' id='73'><div className='flex flex-wrap justify-between' id='74'><div className='w-full md:w-1/3 mb-4 md:mb-0' id='75'><h3 className='text-xl font-bold mb-2' id='76'>Real Estate Co.</h3><p className='text-gray-400' id='77'>123 Main Street<br />City, State ZIP</p></div><div className='w-full md:w-1/3 mb-4 md:mb-0' id='78'><h3 className='text-xl font-bold mb-2' id='79'>Contact Us</h3><p className='text-gray-400' id='80'>Phone: (123) 456-7890<br />Email: info@realestatecompany.com</p></div><div className='w-full md:w-1/3' id='81'><h3 className='text-xl font-bold mb-2' id='82'>Follow Us</h3><div className='flex space-x-4' id='83'><a href='#' className='text-gray-400 hover:text-white' id='84'><i className='fab fa-facebook fa-lg'></i></a><a href='#' className='text-gray-400 hover:text-white' id='85'><i className='fab fa-twitter fa-lg'></i></a><a href='#' className='text-gray-400 hover:text-white' id='86'><i className='fab fa-instagram fa-lg'></i></a></div></div></div><hr className='border-gray-700 my-8' id='87' /><p className='text-center text-gray-400' id='88'>&copy; 2023 Real Estate Co. All rights reserved.</p></div></footer>); }
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-8">
+      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+        <p className="mb-4 sm:mb-0 text-lg font-semibold tracking-wider">
+          &copy; {new Date().getFullYear()} Real Estate. All rights reserved.
+        </p>
+        <ul className="flex space-x-6">
+          <li>
+            <a href="/" className="text-white hover:text-blue-400 transition duration-300 ease-in-out">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/properties" className="text-white hover:text-blue-400 transition duration-300 ease-in-out">
+              Properties
+            </a>
+          </li>
+          <li>
+            <a href="/blog" className="text-white hover:text-blue-400 transition duration-300 ease-in-out">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="text-white hover:text-blue-400 transition duration-300 ease-in-out">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
