@@ -1,50 +1,59 @@
-// Here's the visually enhanced version of the Header component using Tailwind CSS:
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-white shadow-lg">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <a href="/" className="text-2xl font-bold text-gray-800 transition duration-300 ease-in-out transform hover:scale-105 hover:text-indigo-600">
-          Real Estate
-        </a>
-        <nav>
-          <ul className="flex space-x-6">
-            <li>
-              <a
-                href="/"
-                className="text-gray-600 transition duration-200 ease-in-out hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 pb-1"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/properties"
-                className="text-gray-600 transition duration-200 ease-in-out hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 pb-1"
-              >
-                Properties
-              </a>
-            </li>
-            <li>
-              <a
-                href="/blog"
-                className="text-gray-600 transition duration-200 ease-in-out hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 pb-1"
-              >
-                Blog
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact"
-                className="text-gray-600 transition duration-200 ease-in-out hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-600 pb-1"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}
+    >
+      <div className="container mx-auto flex items-center justify-between py-4">
+        <div className="flex items-center">
+          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+        </div>
+        <nav className="hidden md:flex space-x-8 text-gray-600">
+          <a href="#" className="hover:text-gray-900 transition duration-300">
+            Home
+          </a>
+          <a href="#" className="hover:text-gray-900 transition duration-300">
+            Listings
+          </a>
+          <a href="#" className="hover:text-gray-900 transition duration-300">
+            About Us
+          </a>
+          <a href="#" className="hover:text-gray-900 transition duration-300">
+            Services
+          </a>
+          <a href="#" className="hover:text-gray-900 transition duration-300">
+            Blog
+          </a>
         </nav>
+        <div className="hidden md:flex items-center space-x-4">
+          <a
+            href="#"
+            className="text-gray-600 hover:text-gray-900 transition duration-300"
+          >
+            Login
+          </a>
+          <a
+            href="#"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300"
+          >
+            Contact Us
+          </a>
+        </div>
       </div>
     </header>
   );
