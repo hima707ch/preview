@@ -12,7 +12,7 @@ import {PropertiesSection} from './PropertiesSection';
 // import BlogList from './BlogList';
 import {Testimonials} from './Testimonials';
 import {ContactSection} from './ContactSection';
-import {Footer} from './Footer';
+import Footer from './Footer';
 
 const properties = [
   {
