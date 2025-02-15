@@ -74,10 +74,7 @@ export const Body = () => {
             <h2 className="text-3xl font-bold mb-6">Featured Properties</h2>
             <PropertiesSection properties={properties} />
           </div>
-          <div className="mt-12">
-            <h2 className="text-3xl font-bold mb-6">Latest Blog Posts</h2>
-            <BlogList posts={posts} />
-          </div>
+          
           <Testimonials />
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
