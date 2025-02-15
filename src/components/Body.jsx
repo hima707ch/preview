@@ -10,7 +10,7 @@ import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import PropertiesSection from './PropertiesSection';
 import BlogList from './BlogList';
-import Testimonials from 'Testimonials';
+import Testimonials from './Testimonials';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
 
