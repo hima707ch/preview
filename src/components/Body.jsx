@@ -9,7 +9,7 @@ import HeroSection from './HeroSection';
 // import ContactForm from './ContactForm';
 import AboutSection from './AboutSection';
 import PropertiesSection from './PropertiesSection';
-import BlogList from './BlogList';
+// import BlogList from './BlogList';
 import Testimonials from './Testimonials';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
@@ -67,20 +67,21 @@ export const Body = () => {
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main>
-        <Hero />
+        <HeroSection />
         <div className="container mx-auto px-4 py-12">
-          <SearchFilters />
+          <AboutSection />
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Featured Properties</h2>
-            <PropertyList properties={properties} />
+            <PropertiesSection properties={properties} />
           </div>
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Latest Blog Posts</h2>
             <BlogList posts={posts} />
           </div>
+          <Testimonials />
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
-            <ContactForm />
+            <ContactSection />
           </div>
         </div>
       </main>
