@@ -8,7 +8,7 @@ import {HeroSection} from './HeroSection';
 // import SearchFilters from './SearchFilters';
 // import ContactForm from './ContactForm';
 import AboutSection from './AboutSection';
-import {PropertiesSection} from './PropertiesSection';
+import PropertiesSection from './PropertiesSection';
 // import BlogList from './BlogList';
 import {Testimonials} from './Testimonials';
 import ContactSection from './ContactSection';
