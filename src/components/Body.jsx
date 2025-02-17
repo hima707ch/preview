@@ -3,15 +3,12 @@
 // ```jsx
 import React from 'react';
 import Header from './Header';
-import {HeroSection} from './HeroSection';
-// import PropertyList from './PropertyList';
-// import SearchFilters from './SearchFilters';
-// import ContactForm from './ContactForm';
-import AboutSection from './AboutSection';
-import PropertiesSection from './PropertiesSection';
-// import BlogList from './BlogList';
-import {Testimonials} from './Testimonials';
-import ContactSection from './ContactSection';
+import Hero from './Hero';
+import About from './About';
+import Properties from './Properties';
+import Testimonials from './Testimonials';
+import Blog from './Blog';
+import Contact from './Contact';
 import Footer from './Footer';
 
 const properties = [
@@ -67,18 +64,19 @@ export const Body = () => {
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main>
-        <HeroSection />
+        <Hero />
         <div className="container mx-auto px-4 py-12">
-          <AboutSection />
+          <About />
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Featured Properties</h2>
-            <PropertiesSection properties={properties} />
+            <Properties properties={properties} />
           </div>
           
           <Testimonials />
+          <Blog />
           <div className="mt-12">
             <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
-            <ContactSection />
+            <Contact />
           </div>
         </div>
       </main>
