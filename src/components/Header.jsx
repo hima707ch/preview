@@ -1,68 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import images from '../assets/images.js';
 
 const Header = () => {
+  const [theme, setTheme] = useState('light');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setIsScrolled(scrollTop > 0);
-    };
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 100) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}
-    >
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-        <div className="flex items-center">
-          <img src="/path/to/logo.png" alt="Company Logo" className="h-10" />
+    <header id="Header_1" className={`fixed w-full transition-colors duration-500 z-50 ${isScrolled ? 'bg-white dark:bg-gray-900 shadow-md' : 'bg-transparent'} ${theme === 'dark' ? 'dark' : ''}`}>
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <div id="Header_2" className="flex items-center">
+          <img src={images[0]} alt="Logo" className="h-12 w-auto mr-4" />
+          <span className="text-xl font-bold text-gray-800 dark:text-white">Real Estate Co.</span>
         </div>
-        <nav className="hidden md:flex space-x-8 text-gray-600">
-          <a href="#" className="hover:text-gray-900 transition-colors duration-200">
-            Home
-          </a>
-          <a href="#" className="hover:text-gray-900 transition-colors duration-200">
-            Properties
-          </a>
-          <a href="#" className="hover:text-gray-900 transition-colors duration-200">
-            About Us
-          </a>
-          <a href="#" className="hover:text-gray-900 transition-colors duration-200">
-            Services
-          </a>
-          <a href="#" className="hover:text-gray-900 transition-colors duration-200">
-            Contact
-          </a>
+        <nav id="Header_3" className="hidden md:flex space-x-6">
+          <a href="#" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">Home</a>
+          <a href="#" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">Properties</a>
+          <a href="#" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">About Us</a>
+          <a href="#" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">Contact</a>
         </nav>
-        <div className="hidden md:flex items-center space-x-4">
-          <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors duration-200">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-          </a>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Login
+        <div id="Header_4" className="flex items-center">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 transition-all duration-300"
+          >
+            {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
           </button>
-          <button className="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-md hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Sign Up
+          <button className="ml-6 px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300">
+            Schedule a Viewing
           </button>
         </div>
       </div>
