@@ -1,1 +1,44 @@
-import React from 'react';import images from '../assets/images';const Properties = () => {  const properties = [    {      id: 1,      image: images[0],      title: 'Luxurious Villa',      location: 'Miami, FL',      price: '$1,500,000',      type: 'Villa',      highlights: ['5 Bedrooms', '4 Bathrooms', 'Private Pool', 'Ocean View']    },    {      id: 2,      image: images[1],      title: 'Modern Apartment',      location: 'New York, NY',      price: '$800,000',      type: 'Apartment',      highlights: ['2 Bedrooms', '2 Bathrooms', 'City View', 'Gym']    },    {      id: 3,      image: images[2],      title: 'Cozy Cottage',      location: 'Seattle, WA',      price: '$400,000',      type: 'Cottage',      highlights: ['3 Bedrooms', '2 Bathrooms', 'Fireplace', 'Garden']    }  ];  return (    <div className="bg-gray-100 py-10">      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">        <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Featured Properties</h2>        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">          {properties.map((property) => (            <div key={property.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-300">              <img src={property.image} alt={property.title} className="w-full h-56 object-cover" />              <div className="p-6">                <h3 className="text-xl font-bold text-gray-900 mb-2">{property.title}</h3>                <p className="text-gray-600 mb-4">{property.location}</p>                <p className="text-2xl font-bold text-blue-600 mb-4">{property.price}</p>                <div className="mb-4">                  {property.highlights.map((highlight, index) => (                    <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">                      {highlight}                    </span>                  ))}                </div>                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">                  More Details                </button>              </div>            </div>          ))}        </div>        <div className="mt-8">          <h3 className="text-xl font-bold text-gray-900 mb-4">Filter Properties</h3>          <div className="flex flex-wrap -mx-2">            <div className="w-full sm:w-1/2 md:w-1/3 px-2 mb-4">              <select className="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:border-blue-500">                <option value="">Location</option>                <option value="miami">Miami</option>                <option value="new-york">New York</option>                <option value="seattle">Seattle</option>              </select>            </div>            <div className="w-full sm:w-1/2 md:w-1/3 px-2 mb-4">              <select className="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:border-blue-500">                <option value="">Price</option>                <option value="0-500000">$0 - $500,000</option>                <option value="500000-1000000">$500,000 - $1,000,000</option>                <option value="1000000-1500000">$1,000,000 - $1,500,000</option>              </select>            </div>            <div className="w-full sm:w-1/2 md:w-1/3 px-2 mb-4">              <select className="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:border-blue-500">                <option value="">Type</option>                <option value="villa">Villa</option>                <option value="apartment">Apartment</option>                <option value="cottage">Cottage</option>              </select>            </div>          </div>        </div>      </div>    </div>  );};export default Properties;
+import React from 'react';
+import images from '../assets/images';
+
+const Properties = () => {
+  return (
+    <section className="bg-gray-100 py-16" id="Properties_1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl sm:tracking-tight mb-8" id="Properties_2">
+          Featured Properties
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" id="Properties_3">
+          {images.slice(0, 8).map((image, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" id={`Properties_${index+4}`}>
+              <div className="relative pb-48 overflow-hidden">
+                <img
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src={image}
+                  alt={`Property ${index + 1}`}
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900">{`Property ${index + 1}`}</h3>
+                <p className="mt-2 text-base text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra interdum mauris, et fringilla quam pellentesque sit amet.</p>
+                <div className="mt-3 flex items-center">
+                  <span className="text-lg font-semibold text-gray-900">${(index + 1) * 100},000</span>
+                </div>
+                <div className="mt-4">
+                  <a
+                    href="#"
+                    className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-300 ease-in-out"
+                  >
+                    More Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Properties;
