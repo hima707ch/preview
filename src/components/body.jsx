@@ -1,9 +1,11 @@
 import React from 'react';
 import Header from './Header';
 import Hero from './Hero';
+import Sections from './Sections';
+import Features from './Features';
 import About from './About';
-import Properties from './Properties';
 import Testimonials from './Testimonials';
+import Blog from './Blog';
 import WhyUs from './WhyUs';
 import CTA from './CTA';
 import Footer from './Footer';
@@ -13,9 +15,11 @@ const Body = () => {
     <>
       <Header />
       <Hero />
+      <Sections />
+      <Features />
       <About />
-      <Properties />
       <Testimonials />
+      <Blog />
       <WhyUs />
       <CTA />
       <Footer />
