@@ -1,1 +1,35 @@
-import React from 'react';const AboutSection = () => {  return (    <section className='bg-gradient-to-r from-blue-100 to-blue-50 py-16'>      <div className='container mx-auto px-4'>        <h2 className='text-4xl font-bold mb-8 text-center text-blue-900 animate-fade-in'>About Us</h2>        <div className='flex flex-col md:flex-row items-center justify-center'>          <div className='md:w-1/2 mb-8 md:mb-0'>            <img src='/path/to/team-photo.jpg' alt='Our Team' className='rounded-lg shadow-lg animate-slide-in' />          </div>          <div className='md:w-1/2 md:pl-8'>            <h3 className='text-2xl font-semibold mb-4 text-blue-800 animate-fade-in'>Our Story</h3>            <p className='text-lg text-gray-700 mb-6 animate-fade-in'>              Founded in 2010, our real estate company has been dedicated to helping clients find their dream homes. With a team of experienced professionals, we have successfully served thousands of satisfied customers over the years.            </p>            <h3 className='text-2xl font-semibold mb-4 text-blue-800 animate-fade-in'>Mission & Vision</h3>            <p className='text-lg text-gray-700 animate-fade-in'>              Our mission is to provide exceptional service and guidance to our clients throughout their real estate journey. We strive to build lasting relationships based on trust, integrity, and professionalism. Our vision is to be the leading real estate company in the region, known for our expertise and commitment to client satisfaction.            </p>          </div>        </div>      </div>    </section>  );};export default AboutSection;
+import React from 'react';
+import images from '../assets/images';
+
+const AboutSection = () => {
+  return (
+    <section className="bg-gray-100 py-16" id="AboutSection_1">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-8 text-center" id="AboutSection_2">About Us</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-xl font-semibold mb-4" id="AboutSection_3">Our History</h3>
+            <p className="text-gray-600 mb-6" id="AboutSection_4">
+              Founded in 2010, Real Estate Co. has been dedicated to helping people find their dream homes. With a team of experienced professionals, we have grown to become one of the leading real estate companies in the region.
+            </p>
+            <h3 className="text-xl font-semibold mb-4" id="AboutSection_5">Our Mission</h3>
+            <p className="text-gray-600 mb-6" id="AboutSection_6">
+              Our mission is to provide exceptional service and expertise to our clients, guiding them through every step of the real estate process. We strive to build long-lasting relationships based on trust, integrity, and professionalism.
+            </p>
+          </div>
+          <div>
+            <img src={images[0]} alt="Company Timeline" className="w-full h-auto rounded-lg shadow-md" id="AboutSection_7" />
+          </div>
+        </div>
+        <div className="mt-12">
+          <h3 className="text-xl font-semibold mb-4 text-center" id="AboutSection_8">Our Team</h3>
+          <div className="flex justify-center">
+            <img src={images[1]} alt="Team Photo" className="w-full md:w-2/3 h-auto rounded-lg shadow-md" id="AboutSection_9" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutSection;
