@@ -6,7 +6,7 @@ import PropertiesSection from './PropertiesSection';
 // import ServicesSection from './ServicesSection';
 import TestimonialsSection from './TestimonialsSection';
 import BlogSection from './BlogSection';
-import CTASection from './CTASection';
+// import CTASection from './CTASection';
 import Footer from './Footer';
 
 export const Body = () => {
@@ -19,7 +19,7 @@ export const Body = () => {
       {/* <ServicesSection /> */}
       <TestimonialsSection />
       <BlogSection />
-      <CTASection />
+      {/* <CTASection /> */}
       <Footer />
     </div>
   );
