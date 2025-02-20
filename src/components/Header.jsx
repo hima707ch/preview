@@ -1,208 +1,167 @@
-import React, { useState } from 'react';
-import { FaHome, FaInfoCircle, FaBuilding, FaHandshake, FaEnvelope, FaUser, FaSignInAlt } from 'react-icons/fa';
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
+import React, { useState, useEffect } from 'react';
 import images from '../assets/images';
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [scrolled, setScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
-  const [showRegister, setShowRegister] = useState(false);
-  const [registerData, setRegisterData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [registerError, setRegisterError] = useState(null);
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (response.ok) {
-        const { token } = await response.json();
-        console.log('Login successful. Token:', token);
-      } else if (response.status === 401) {
-        setError('Invalid username or password');
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 100) {
+        setScrolled(true);
       } else {
-        setError('Login failed. Please try again.');
+        setScrolled(false);
       }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    }
-  };
+    };
 
-  const handleRegister = async () => {
-    try {
-      if (registerData.password !== registerData.confirmPassword) {
-        setRegisterError('Passwords do not match');
-        return;
-      }
-
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: registerData.username,
-          email: registerData.email,
-          password: registerData.password
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Registration successful:', data);
-        setShowRegister(false);
-        setRegisterData({
-          username: '',
-          email: '',
-          password: '',
-          confirmPassword: ''
-        });
-      } else {
-        const errorData = await response.json();
-        setRegisterError(errorData.message || 'Registration failed');
-      }
-    } catch (error) {
-      setRegisterError('An error occurred. Please try again.');
-    }
-  };
-
-  const handleScroll = () => {
-    const scrollTop = window.pageYOffset;
-    setIsScrolled(scrollTop > 0);
-  };
-
-  React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+
+    try {
+      const response = await fetch('/api/users/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setIsLoggedIn(true);
+        setError(null);
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
+  const handleListProperty = async (e) => {
+    e.preventDefault();
+    const userId = e.target.userId.value;
+    const propertyDetails = e.target.propertyDetails.value;
+
+    try {
+      const response = await fetch('/api/properties/list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, propertyDetails }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        alert('Property listed successfully!');
+        setError(null);
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
   return (
     <header
       id="Header_1"
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 transition-colors duration-300 ${isScrolled ? 'bg-white dark:bg-gray-800 shadow-md' : 'bg-transparent'} ${isDarkMode ? 'dark' : ''}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}
     >
-      <div id="Header_2" className="flex items-center">
-        <img src={images[0]} alt="Company Logo" className="h-10 w-auto" />
-      </div>
-
-      <nav id="Header_3" className="hidden md:flex space-x-8 text-gray-600 dark:text-gray-300">
-        <a href="#" className="flex items-center hover:text-blue-500">
-          <FaHome className="mr-2" /> Home
-        </a>
-        <a href="#" className="flex items-center hover:text-blue-500">
-          <FaInfoCircle className="mr-2" /> About Us
-        </a>
-        <a href="#" className="flex items-center hover:text-blue-500">
-          <FaBuilding className="mr-2" /> Properties
-        </a>
-        <a href="#" className="flex items-center hover:text-blue-500">
-          <FaHandshake className="mr-2" /> Services
-        </a>
-        <a href="#" className="flex items-center hover:text-blue-500">
-          <FaEnvelope className="mr-2" /> Contact
-        </a>
-      </nav>
-
-      <div id="Header_4" className="flex items-center space-x-4">
-        <button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-yellow-500 dark:text-yellow-400 focus:outline-none"
-        >
-          {isDarkMode ? <BsFillSunFill /> : <BsFillMoonFill />}
-        </button>
-
-        <div className="relative">
-          <button className="flex items-center px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none">
-            <FaUser className="mr-2" /> Customer Login
-          </button>
-          <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg">
-            <div className="p-4 space-y-4">
+      <div className="container mx-auto flex items-center justify-between py-4">
+        <div id="Header_2" className="flex items-center">
+          <img src={images[0]} alt="Logo" className="h-10 mr-4" />
+          <h1 className="text-2xl font-bold text-gray-800">Real Estate</h1>
+        </div>
+        <nav id="Header_3" className="flex items-center space-x-8">
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            Home
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            About Us
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            Listings
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            Services
+          </a>
+          <a href="#" className="text-gray-600 hover:text-gray-800">
+            Contact
+          </a>
+        </nav>
+        <div id="Header_4" className="flex items-center space-x-4">
+          {isLoggedIn ? (
+            <form onSubmit={handleListProperty}>
+              <input
+                type="hidden"
+                name="userId"
+                value="1"
+              />
               <input
                 type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
+                name="propertyDetails"
+                placeholder="Property details"
+                className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
               />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
-              />
-              {error && <p className="text-red-500 text-sm">{error}</p>}
               <button
-                onClick={handleLogin}
-                className="flex items-center justify-center w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                type="submit"
+                className="bg-blue-500 text-white rounded-md px-6 py-2 ml-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <FaSignInAlt className="mr-2" /> Login
+                List Your Property
               </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative">
-          <button 
-            onClick={() => setShowRegister(!showRegister)}
-            className="px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600"
-          >
-            Register
-          </button>
-          {showRegister && (
-            <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-md shadow-lg">
-              <div className="p-4 space-y-4">
+            </form>
+          ) : (
+            <>
+              <form onSubmit={handleLogin} className="flex items-center">
                 <input
                   type="text"
+                  name="username"
                   placeholder="Username"
-                  value={registerData.username}
-                  onChange={(e) => setRegisterData({...registerData, username: e.target.value})}
-                  className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={registerData.email}
-                  onChange={(e) => setRegisterData({...registerData, email: e.target.value})}
-                  className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
+                  className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
+                  required
                 />
                 <input
                   type="password"
+                  name="password"
                   placeholder="Password"
-                  value={registerData.password}
-                  onChange={(e) => setRegisterData({...registerData, password: e.target.value})}
-                  className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
+                  className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
+                  required
                 />
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={registerData.confirmPassword}
-                  onChange={(e) => setRegisterData({...registerData, confirmPassword: e.target.value})}
-                  className="w-full px-4 py-2 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md focus:outline-none"
-                />
-                {registerError && <p className="text-red-500 text-sm">{registerError}</p>}
                 <button
-                  onClick={handleRegister}
-                  className="flex items-center justify-center w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none"
+                  type="submit"
+                  className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  Register
+                  Login
                 </button>
-              </div>
-            </div>
+              </form>
+              <a
+                href="#"
+                className="text-blue-500 hover:text-blue-600 focus:outline-none focus:underline"
+              >
+                Sign Up
+              </a>
+            </>
           )}
         </div>
       </div>
+      {error && (
+        <div id="Header_5" className="bg-red-100 text-red-700 px-4 py-2">
+          {error}
+        </div>
+      )}
     </header>
   );
 };
