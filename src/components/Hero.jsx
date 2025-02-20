@@ -1,1 +1,45 @@
-import React from 'react';import images from '../assets/images';const Hero = () => {  const fetchProperties = async () => {    try {      const response = await fetch('/properties');      const data = await response.json();      console.log(data);    } catch (error) {      console.error('Error fetching properties:', error);    }  };  return (    <section id='Hero_1' className='relative'>      <div id='Hero_2' className='absolute inset-0'>        <img          id='Hero_3'          src={images[0]}          alt='Luxury Property'          className='w-full h-full object-cover'        />        <div id='Hero_4' className='absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-60'></div>      </div>      <div id='Hero_5' className='relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8'>        <h1 id='Hero_6' className='text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl'>          Find Your Dream Home with Us        </h1>        <p id='Hero_7' className='mt-6 max-w-3xl text-xl text-gray-300'>          Browse the best properties at unbeatable prices        </p>        <div id='Hero_8' className='mt-10 sm:flex sm:justify-center lg:justify-start'>          <div id='Hero_9' className='rounded-md shadow'>            <button              id='Hero_10'              className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10'              onClick={fetchProperties}            >              View Listings            </button>          </div>          <div id='Hero_11' className='mt-3 rounded-md shadow sm:mt-0 sm:ml-3'>            <button              id='Hero_12'              className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10'            >              Contact an Agent            </button>          </div>        </div>      </div>    </section>  );};export default Hero;
+import React, { useState, useEffect } from 'react';
+import images from '../assets/images';
+
+export default function Hero() {
+  const [properties, setProperties] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/properties')
+      .then(res => res.json())
+      .then(data => {
+        if(data.error) {
+          setError(data.error);
+        } else {
+          setProperties(data);
+        }
+      })
+      .catch(err => setError('Failed to fetch properties'));
+  }, []);
+
+  return (
+    <section id="Hero_1" className="relative bg-cover bg-center py-48" style={{backgroundImage: `url(${images[0]})`}}>
+      <div id="Hero_2" className="absolute inset-0 bg-black opacity-40"></div>
+      <div id="Hero_3" className="relative z-10 text-center text-white">
+        <h1 id="Hero_4" className="text-5xl font-bold mb-4">Find Your Dream Home</h1>
+        <p id="Hero_5" className="text-xl mb-8">Exclusive Properties in Prime Locations</p>
+        {error ? (
+          <p id="Hero_6" className="text-red-500">{error}</p>
+        ) : (
+          <div id="Hero_7" className="flex justify-center space-x-4">
+            <a id="Hero_8"
+              href={properties.length > 0 ? '#listings' : '#'}
+              className="bg-white text-blue-600 px-8 py-3 rounded-md shadow-md hover:bg-blue-50 transition"
+            >
+              Browse Listings
+            </a>
+            <a id="Hero_9" href="#contact" className="bg-blue-600 text-white px-8 py-3 rounded-md shadow-md hover:bg-blue-700 transition">
+              Contact Us
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
