@@ -5,6 +5,10 @@ import images from '../assets/images';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showSignupForm, setShowSignupForm] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +27,8 @@ const Header = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch('/auth/login', {
         method: 'POST',
@@ -36,11 +41,9 @@ const Header = () => {
       const data = await response.json();
 
       if (data.token) {
-        // Store token and redirect to dashboard
         localStorage.setItem('token', data.token);
         window.location.href = '/dashboard';
       } else {
-        // Display error message
         alert(data.error);
       }
     } catch (error) {
@@ -48,7 +51,8 @@ const Header = () => {
     }
   };
 
-  const handleSignup = async (email, password) => {
+  const handleSignup = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch('/auth/register', {
         method: 'POST',
@@ -61,11 +65,9 @@ const Header = () => {
       const data = await response.json();
 
       if (data.message) {
-        // Display success message and redirect to login
         alert(data.message);
         window.location.href = '/login';
       } else {
-        // Display error message
         alert(data.error);
       }
     } catch (error) {
@@ -132,7 +134,7 @@ const Header = () => {
           <button
             id="Header_20"
             className="flex items-center text-sm font-medium hover:text-blue-600"
-            onClick={() => handleLogin('user@example.com', 'password')}
+            onClick={() => setShowLoginForm(!showLoginForm)}
           >
             <FaSignInAlt id="Header_21" className="mr-1" />
             Login
@@ -140,13 +142,59 @@ const Header = () => {
           <button
             id="Header_22"
             className="flex items-center text-sm font-medium hover:text-blue-600"
-            onClick={() => handleSignup('newuser@example.com', 'password')}
+            onClick={() => setShowSignupForm(!showSignupForm)}
           >
             <FaUserPlus id="Header_23" className="mr-1" />
             Signup
           </button>
         </div>
       </div>
+      {showLoginForm && (
+        <div className="absolute top-20 right-4 bg-white p-4 rounded shadow-lg">
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+            <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+              Login
+            </button>
+          </form>
+        </div>
+      )}
+      {showSignupForm && (
+        <div className="absolute top-20 right-4 bg-white p-4 rounded shadow-lg">
+          <form onSubmit={handleSignup} className="space-y-4">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+            <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+              Sign Up
+            </button>
+          </form>
+        </div>
+      )}
     </header>
   );
 };
