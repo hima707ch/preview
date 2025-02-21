@@ -1,11 +1,9 @@
 import React from 'react';
 import Header from './Header';
-import Hero from './Hero';
-import FeaturesServices from './Features/Services';
-import About from './About';
+import HeroSection from './HeroSection';
+import BlogPosts from './BlogPosts';
+import AboutSection from './AboutSection';
 import Testimonials from './Testimonials';
-import BlogResources from './Blog/Resources';
-import WhyUs from './WhyUs';
 import CTASection from './CTASection';
 import Footer from './Footer';
 
@@ -13,12 +11,10 @@ const Body = () => {
   return (
     <>
       <Header />
-      <Hero />
-      <FeaturesServices />
-      <About />
+      <HeroSection />
+      <BlogPosts />
+      <AboutSection />
       <Testimonials />
-      <BlogResources />
-      <WhyUs />
       <CTASection />
       <Footer />
     </>
