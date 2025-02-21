@@ -7,6 +7,15 @@ const Header = () => {
   const [logo, setLogo] = useState('');
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
+  });
+  const [registerData, setRegisterData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
   const [formData, setFormData] = useState({
     title: '',
     address: '',
@@ -37,38 +46,54 @@ const Header = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/listings', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(loginData),
       });
       if (response.ok) {
         setShowLoginForm(false);
-        setShowSignUpForm(false);
-        setFormData({
-          title: '',
-          address: '',
-          price: '',
-          bedrooms: '',
-          bathrooms: '',
-          squareFootage: '',
-          description: '',
-          images: []
-        });
+        setLoginData({ email: '', password: '' });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error logging in:', error);
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registerData),
+      });
+      if (response.ok) {
+        setShowSignUpForm(false);
+        setRegisterData({ username: '', email: '', password: '' });
+      }
+    } catch (error) {
+      console.error('Error registering:', error);
+    }
+  };
+
+  const handleLoginChange = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleRegisterChange = (e) => {
+    setRegisterData({
+      ...registerData,
       [e.target.name]: e.target.value
     });
   };
@@ -115,15 +140,15 @@ const Header = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg w-96">
             <h2 className="text-2xl font-bold mb-4">Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
               <div className="mb-4">
                 <input
-                  type="text"
-                  name="title"
-                  placeholder="Title"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
                   className="w-full p-2 border rounded"
-                  value={formData.title}
-                  onChange={handleChange}
+                  value={loginData.email}
+                  onChange={handleLoginChange}
                   required
                 />
               </div>
@@ -133,6 +158,8 @@ const Header = () => {
                   name="password"
                   placeholder="Password"
                   className="w-full p-2 border rounded"
+                  value={loginData.password}
+                  onChange={handleLoginChange}
                   required
                 />
               </div>
@@ -149,48 +176,37 @@ const Header = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg w-96">
             <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
               <div className="mb-4">
                 <input
                   type="text"
-                  name="title"
-                  placeholder="Title"
+                  name="username"
+                  placeholder="Username"
                   className="w-full p-2 border rounded"
-                  value={formData.title}
-                  onChange={handleChange}
+                  value={registerData.username}
+                  onChange={handleRegisterChange}
                   required
                 />
               </div>
               <div className="mb-4">
                 <input
-                  type="text"
-                  name="address"
-                  placeholder="Address"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
                   className="w-full p-2 border rounded"
-                  value={formData.address}
-                  onChange={handleChange}
+                  value={registerData.email}
+                  onChange={handleRegisterChange}
                   required
                 />
               </div>
               <div className="mb-4">
                 <input
-                  type="number"
-                  name="price"
-                  placeholder="Price"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
                   className="w-full p-2 border rounded"
-                  value={formData.price}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <input
-                  type="number"
-                  name="bedrooms"
-                  placeholder="Bedrooms"
-                  className="w-full p-2 border rounded"
-                  value={formData.bedrooms}
-                  onChange={handleChange}
+                  value={registerData.password}
+                  onChange={handleRegisterChange}
                   required
                 />
               </div>
