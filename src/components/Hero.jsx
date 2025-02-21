@@ -18,7 +18,7 @@ export default function Hero() {
     <section
       id="Hero_1"
       className="relative bg-cover bg-center py-32"
-      style={{ backgroundImage: `url(${images[0]})` }}
+      style={{ backgroundImage: `url(${images[2]})` }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative container mx-auto text-white text-center">
