@@ -94,7 +94,7 @@ const Feature = () => {
   return (
     <section className="bg-gray-100 py-16" id="Feature_4">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-10 text-center" id="Feature_5">Recent Properties</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center" id="Feature_5">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature) => (
             <div key={feature.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300" id={feature.id}>
