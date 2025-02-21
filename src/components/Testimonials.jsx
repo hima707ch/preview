@@ -31,7 +31,7 @@ const Testimonials = () => {
     <section className="bg-gradient-to-r from-blue-500 to-purple-600 py-16" id="Testimonials_1">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-white mb-8 text-center">What Our Customers Say</h2>
-        {testimonials.length > 0 && (
+        {testimonials?.length > 0 && (
           <div className="relative">
             <div className="flex justify-center items-center mb-8">
               <img
