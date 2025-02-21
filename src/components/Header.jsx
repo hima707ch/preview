@@ -1,62 +1,64 @@
 import React, { useState, useEffect } from 'react';
+import { FaHome, FaList, FaInfoCircle, FaBlog, FaEnvelope, FaMoon, FaSun } from 'react-icons/fa';
 import images from '../assets/images';
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
+  const [theme, setTheme] = useState('light');
+  const [logo, setLogo] = useState('');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
+    const fetchLogo = async () => {
+      try {
+        const response = await fetch('/api/listings');
+        const data = await response.json();
+        const latestListing = data[data.length - 1];
+        setLogo(latestListing.image);
+      } catch (error) {
+        console.error('Error fetching logo:', error);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+
+    fetchLogo();
   }, []);
 
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <header
-      id="Header_1"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isSticky ? 'bg-white/80 shadow-md py-2' : 'bg-transparent py-4'}`}
-    >
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <a href="#" id="Header_2">
-            <img src={images[0]} alt="Logo" className="h-10" />
-          </a>
-          <div className="hidden md:flex items-center space-x-4" id="Header_3">
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              <i className="fab fa-instagram"></i>
-            </a>
-          </div>
-          <div className="hidden md:block" id="Header_4">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+    <header id="Header_1" className={`sticky top-0 z-50 bg-${theme === 'light' ? 'white' : 'gray-900'} shadow-md`}>
+      <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        <div id="Header_2" className="flex items-center">
+          <img src={logo || images[0]} alt="Logo" className="w-10 h-10 mr-2" />
+          <span className={`text-xl font-bold ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>Real Estate</span>
         </div>
-        <nav className="hidden md:flex space-x-8 text-gray-600" id="Header_5">
-          <a href="#" className="hover:text-gray-800">
-            Home
+        <nav id="Header_3" className="hidden md:flex space-x-8">
+          <a href="#" className={`flex items-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-white'}`}>
+            <FaHome className="mr-1" /> Home
           </a>
-          <a href="#" className="hover:text-gray-800">
-            Articles
+          <a href="#" className={`flex items-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-white'}`}>
+            <FaList className="mr-1" /> Listings
           </a>
-          <a href="#" className="hover:text-gray-800">
-            About
+          <a href="#" className={`flex items-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-white'}`}>
+            <FaInfoCircle className="mr-1" /> About
           </a>
-          <a href="#" className="hover:text-gray-800">
-            Contact
+          <a href="#" className={`flex items-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-white'}`}>
+            <FaBlog className="mr-1" /> Blog
+          </a>
+          <a href="#" className={`flex items-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-800' : 'text-gray-400 hover:text-white'}`}>
+            <FaEnvelope className="mr-1" /> Contact
           </a>
         </nav>
+        <div id="Header_4" className="flex items-center space-x-4">
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full ${theme === 'light' ? 'bg-gray-200 hover:bg-gray-300 text-gray-800' : 'bg-gray-700 hover:bg-gray-600 text-white'}`}
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </button>
+          <button className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">Login</button>
+          <button className="px-4 py-2 text-blue-500 border border-blue-500 rounded-md hover:bg-blue-500 hover:text-white">Sign Up</button>
+        </div>
       </div>
     </header>
   );
