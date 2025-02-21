@@ -1,1 +1,51 @@
-import React from 'react';import images from '../assets/images';const Footer = () => {  return (    <footer id="Footer_1" className="bg-gray-800 text-white py-12">      <div id="Footer_2" className="container mx-auto flex flex-wrap justify-between">        <div id="Footer_3" className="w-full md:w-1/3 mb-8 md:mb-0">          <h3 id="Footer_4" className="text-2xl font-semibold mb-4">Real Estate</h3>          <p id="Footer_5" className="text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>        </div>        <div id="Footer_6" className="w-full md:w-1/3 mb-8 md:mb-0">          <h3 id="Footer_7" className="text-xl font-semibold mb-4">Quick Links</h3>          <ul id="Footer_8" className="space-y-2">            <li id="Footer_9"><a href="/" className="text-gray-400 hover:text-white">Home</a></li>            <li id="Footer_10"><a href="/about" className="text-gray-400 hover:text-white">About</a></li>            <li id="Footer_11"><a href="/properties" className="text-gray-400 hover:text-white">Properties</a></li>            <li id="Footer_12"><a href="/blog" className="text-gray-400 hover:text-white">Blog</a></li>            <li id="Footer_13"><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>          </ul>        </div>        <div id="Footer_14" className="w-full md:w-1/3">          <h3 id="Footer_15" className="text-xl font-semibold mb-4">Newsletter</h3>          <form id="Footer_16" className="flex">            <input              id="Footer_17"              type="email"              placeholder="Your email"              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"            />            <button              id="Footer_18"              type="submit"              className="px-4 py-2 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"            >              Subscribe            </button>          </form>        </div>      </div>      <hr id="Footer_19" className="my-8 border-gray-700" />      <div id="Footer_20" className="container mx-auto flex flex-wrap items-center justify-between">        <div id="Footer_21" className="w-full md:w-1/2 mb-4 md:mb-0">          <p id="Footer_22" className="text-gray-400">&copy; 2023 Real Estate. All rights reserved.</p>        </div>        <div id="Footer_23" className="w-full md:w-1/2 text-right">          <a href="#" id="Footer_24" className="text-gray-400 hover:text-white mx-2">            <img src={images[0]} alt="Facebook" className="w-6 h-6 inline-block" />          </a>          <a href="#" id="Footer_25" className="text-gray-400 hover:text-white mx-2">            <img src={images[1]} alt="Twitter" className="w-6 h-6 inline-block" />          </a>          <a href="#" id="Footer_26" className="text-gray-400 hover:text-white mx-2">            <img src={images[2]} alt="Instagram" className="w-6 h-6 inline-block" />          </a>        </div>      </div>    </footer>  );};export default Footer;
+import React from 'react';
+import images from '../assets/images';
+
+const Footer = () => {
+  return (
+    <footer id="Footer_1" className="bg-gray-900 text-white py-8">
+      <div id="Footer_2" className="container mx-auto flex flex-wrap justify-between">
+        <div id="Footer_3" className="w-full md:w-1/3 mb-8 md:mb-0">
+          <h3 id="Footer_4" className="text-lg font-semibold mb-4">Navigation</h3>
+          <ul id="Footer_5" className="space-y-2">
+            <li id="Footer_6"><a href="#" className="hover:text-gray-400 transition duration-300">About</a></li>
+            <li id="Footer_7"><a href="#" className="hover:text-gray-400 transition duration-300">Contact</a></li>
+            <li id="Footer_8"><a href="#" className="hover:text-gray-400 transition duration-300">Privacy Policy</a></li>
+            <li id="Footer_9"><a href="#" className="hover:text-gray-400 transition duration-300">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div id="Footer_10" className="w-full md:w-1/3 mb-8 md:mb-0">
+          <h3 id="Footer_11" className="text-lg font-semibold mb-4">Connect with Us</h3>
+          <div id="Footer_12" className="flex space-x-4">
+            <a href="#" className="text-white hover:text-gray-400 transition duration-300">
+              <img id="Footer_13" src={images[0]} alt="Facebook" className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-white hover:text-gray-400 transition duration-300">
+              <img id="Footer_14" src={images[1]} alt="Twitter" className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-white hover:text-gray-400 transition duration-300">
+              <img id="Footer_15" src={images[2]} alt="Instagram" className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+        <div id="Footer_16" className="w-full md:w-1/3">
+          <h3 id="Footer_17" className="text-lg font-semibold mb-4">Newsletter</h3>
+          <p id="Footer_18" className="text-gray-400 mb-4">Stay informed with our latest updates and offers.</p>
+          <form id="Footer_19">
+            <div id="Footer_20" className="flex items-center border-b border-gray-600 py-2">
+              <input id="Footer_21" className="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="email" placeholder="Enter your email" />
+              <button id="Footer_22" className="flex-shrink-0 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+                Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="Footer_23" className="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p id="Footer_24" className="text-gray-400">&copy; 2023 Your Company. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
