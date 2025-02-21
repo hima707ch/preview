@@ -24,12 +24,59 @@ const Feature = () => {
     }
   ]);
 
+  const [formData, setFormData] = useState({
+    title: '',
+    address: '',
+    price: '',
+    bedrooms: '',
+    bathrooms: '',
+    squareFootage: '',
+    description: '',
+    images: []
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/listings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        alert('Property added successfully!');
+        setFormData({
+          title: '',
+          address: '',
+          price: '',
+          bedrooms: '',
+          bathrooms: '',
+          squareFootage: '',
+          description: '',
+          images: []
+        });
+      }
+    } catch (error) {
+      console.error('Error adding property:', error);
+      alert('Failed to add property');
+    }
+  };
+
   useEffect(() => {
     const fetchPopularServices = async () => {
       try {
         const response = await fetch('/api/listings');
         const data = await response.json();
-        // Analyze data to determine most popular services
         const popularServices = analyzePopularServices(data);
         setFeatures(popularServices);
       } catch (error) {
@@ -41,8 +88,6 @@ const Feature = () => {
   }, []);
 
   const analyzePopularServices = (data) => {
-    // Placeholder function to analyze data and return popular services
-    // Replace with actual data analysis logic
     return features;
   };
 
@@ -61,7 +106,98 @@ const Feature = () => {
             </div>
           ))}
         </div>
+
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">Add New Property</h2>
+          <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-gray-700 mb-2">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Bedrooms</label>
+                <input
+                  type="number"
+                  name="bedrooms"
+                  value={formData.bedrooms}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Bathrooms</label>
+                <input
+                  type="number"
+                  name="bathrooms"
+                  value={formData.bathrooms}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Square Footage</label>
+                <input
+                  type="number"
+                  name="squareFootage"
+                  value={formData.squareFootage}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-6">
+              <label className="block text-gray-700 mb-2">Description</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                className="w-full p-2 border rounded"
+                rows="4"
+              />
+            </div>
+            <button
+              type="submit"
+              className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+            >
+              Add Property
+            </button>
+          </form>
+        </div>
       </div>
+
       <div className="mt-10 flex justify-center">
         <img src={images[Math.floor(Math.random() * images.length)]} alt="Real Estate" className="w-full max-w-4xl rounded-lg shadow-lg" id="Feature_6" />
       </div>
