@@ -1,1 +1,80 @@
-import React from 'react';import images from '../assets/images';const About = () => {  return (    <section className="bg-gray-100 py-12" id="About_1">      <div className="container mx-auto px-4">        <h2 className="text-3xl font-bold mb-8 text-center" id="About_2">About Us</h2>        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">          <div className="bg-white p-6 rounded-lg shadow-md" id="About_3">            <h3 className="text-xl font-semibold mb-4" id="About_4">Our History</h3>            <p className="text-gray-600" id="About_5">              Founded in 2005, Acme Real Estate has been dedicated to helping clients find their dream homes and              navigate the complex world of real estate. With a team of experienced professionals and a commitment              to excellence, we have grown to become one of the most trusted names in the industry.            </p>          </div>          <div className="bg-white p-6 rounded-lg shadow-md" id="About_6">            <h3 className="text-xl font-semibold mb-4" id="About_7">Our Mission & Vision</h3>            <p className="text-gray-600 mb-4" id="About_8">              Our mission is to provide exceptional service and guidance to our clients, ensuring their real estate              experience is smooth, successful, and stress-free. We strive to be the go-to resource for all their              real estate needs.            </p>            <p className="text-gray-600" id="About_9">              Our vision is to be the leading real estate company in the area, known for our integrity, expertise,              and unwavering commitment to client satisfaction.            </p>          </div>        </div>        <div className="mt-12" id="About_10">          <h3 className="text-2xl font-semibold mb-6 text-center" id="About_11">Milestones & Achievements</h3>          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">            <div className="bg-white p-6 rounded-lg shadow-md text-center" id="About_12">              <img src={images[0]} alt="Milestone 1" className="w-full h-40 object-cover rounded-lg mb-4" id="About_13" />              <h4 className="text-lg font-semibold mb-2" id="About_14">2010</h4>              <p className="text-gray-600" id="About_15">Expanded to 3 new locations</p>            </div>            <div className="bg-white p-6 rounded-lg shadow-md text-center" id="About_16">              <img src={images[1]} alt="Milestone 2" className="w-full h-40 object-cover rounded-lg mb-4" id="About_17" />              <h4 className="text-lg font-semibold mb-2" id="About_18">2015</h4>              <p className="text-gray-600" id="About_19">Achieved $100 million in sales</p>            </div>            <div className="bg-white p-6 rounded-lg shadow-md text-center" id="About_20">              <img src={images[2]} alt="Milestone 3" className="w-full h-40 object-cover rounded-lg mb-4" id="About_21" />              <h4 className="text-lg font-semibold mb-2" id="About_22">2020</h4>              <p className="text-gray-600" id="About_23">Named Best Real Estate Agency in the region</p>            </div>          </div>        </div>      </div>    </section>  );};export default About;
+import React, { useState, useEffect } from 'react';
+
+const About = () => {
+  const [achievements, setAchievements] = useState([]);
+
+  useEffect(() => {
+    const fetchAchievements = async () => {
+      try {
+        const response = await fetch('/api/listings');
+        const data = await response.json();
+        setAchievements(data.slice(0, 3));
+      } catch (error) {
+        console.error('Error fetching achievements:', error);
+      }
+    };
+
+    fetchAchievements();
+  }, []);
+
+  return (
+    <section id="About_1" className="bg-gray-100 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center">
+          <h2 id="About_2" className="text-base text-indigo-600 font-semibold tracking-wide uppercase">About Us</h2>
+          <p id="About_3" className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Our Story, Mission, and Vision
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+            <div id="About_4" className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Our Story</h3>
+              <p className="mt-2 text-base text-gray-500">
+                Founded in 2005, RealEstate Inc. started with a vision to transform the real estate industry. With dedication and innovative solutions, we've grown to become a trusted name in the market.
+              </p>
+            </div>
+
+            <div id="About_5" className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">Our Mission</h3>
+              <p className="mt-2 text-base text-gray-500">
+                Our mission is to provide exceptional real estate services, prioritizing client satisfaction and building long-lasting relationships. We strive to make the process of buying, selling, or renting properties seamless and efficient.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <h3 id="About_6" className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl text-center mb-6">
+            Recent Achievements
+          </h3>
+          <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {achievements.map((achievement, index) => (
+              <div key={index} id={`About_${7 + index}`} className="group relative bg-white p-6 rounded-lg shadow-md">
+                <div className="w-full min-h-80 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                  <img
+                    src={achievement.image}
+                    alt={achievement.title}
+                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                  />
+                </div>
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <span aria-hidden="true" className="absolute inset-0" />
+                      {achievement.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500">{achievement.address}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
