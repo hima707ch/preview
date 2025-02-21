@@ -1,27 +1,24 @@
 import React from 'react';
 import Header from './Header';
 import HeroSection from './HeroSection';
+import BlogPosts from './BlogPosts';
 import AboutSection from './AboutSection';
-import PropertiesSection from './PropertiesSection';
-// import ServicesSection from './ServicesSection';
-import TestimonialsSection from './TestimonialsSection';
-import BlogSection from './BlogSection';
-// import CTASection from './CTASection';
+import Testimonials from './Testimonials';
+import CTASection from './CTASection';
 import Footer from './Footer';
 
-export const Body = () => {
+const Body = () => {
   return (
-    <div>
+    <>
       <Header />
       <HeroSection />
+      <BlogPosts />
       <AboutSection />
-      <PropertiesSection />
-      {/* <ServicesSection /> */}
-      <TestimonialsSection />
-      <BlogSection />
-      {/* <CTASection /> */}
+      <Testimonials />
+      <CTASection />
       <Footer />
-    </div>
+    </>
   );
 };
 
+export default Body;
