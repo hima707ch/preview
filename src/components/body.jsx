@@ -1,25 +1,33 @@
 import React from 'react';
 import Header from './Header';
-import Hero from './Hero';
-import About from './About';
-import Feature from './Feature';
-import Testimonials from './Testimonials';
-import WhyUs from './WhyUs';
-import CTA from './CTA';
+import HeroSection from './HeroSection';
+import FeaturedProperties from './FeaturedProperties';
+import SearchFilters from './SearchFilters';
+import PropertiesListing from './PropertiesListing';
+import PropertyDetails from './PropertyDetails';
+import ContactForm from './ContactForm';
+import Login from './Login';
+import Registration from './Registration';
+import UserSettings from './UserSettings';
+import ListingsControl from './ListingsControl';
 import Footer from './Footer';
 
 const Body = () => {
   return (
-    <>
+    <div>
       <Header />
-      <Hero />
-      <About />
-      <Feature />
-      <Testimonials />
-      <WhyUs />
-      <CTA />
+      <HeroSection />
+      <FeaturedProperties />
+      <SearchFilters />
+      <PropertiesListing />
+      <PropertyDetails />
+      <ContactForm />
+      <Login />
+      <Registration />
+      <UserSettings />
+      <ListingsControl />
       <Footer />
-    </>
+    </div>
   );
 };
 
