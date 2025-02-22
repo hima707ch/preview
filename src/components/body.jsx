@@ -10,7 +10,7 @@ import Dashboard from './Dashboard';
 
 const Body = () => {
   return (
-    <>
+    <div>
       <Header />
       <HeroSection />
       <PropertiesListing />
@@ -19,7 +19,7 @@ const Body = () => {
       <Registration />
       <Dashboard />
       <Footer />
-    </>
+    </div>
   );
 };
 
