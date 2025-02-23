@@ -1,154 +1,148 @@
 import React, { useState, useEffect } from 'react';
+import images from '../assets/images';
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
+      const scrollTop = window.pageYOffset;
+      setIsScrolled(scrollTop > 0);
     };
+
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setToken(data.token);
+        setIsLoggedIn(true);
+      } else {
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleLogout = () => {
+    setToken('');
+    setIsLoggedIn(false);
+  };
+
+  const handleRegister = async (name, email, password) => {
+    try {
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (response.ok) {
+        console.log('Registration successful');
+      } else {
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <header
       id="Header_1"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isSticky ? 'bg-white/90 shadow-md py-2' : 'bg-transparent py-4'}`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 transition-colors duration-300 ${isScrolled ? 'bg-white dark:bg-gray-800 shadow-md' : 'bg-transparent'} ${isDarkMode ? 'dark' : ''}`}
     >
-      <div className="container mx-auto flex items-center justify-between">
-        <div id="Header_2" className="flex items-center">
-          <img src="/path/to/logo.png" alt="Company Logo" className="h-10 mr-4" />
-          <span className="text-xl font-semibold text-gray-800">Real Estate Co.</span>
-        </div>
-        <nav id="Header_3" className="hidden md:flex space-x-8 text-gray-600">
-          <a href="/" className="hover:text-blue-500 transition duration-200">
+      <div id="Header_2" className="flex items-center">
+        <img id="Header_3" src={images[0]} alt="Logo" className="h-10 mr-4" />
+        <nav id="Header_4" className="hidden md:flex space-x-8 text-gray-600 dark:text-gray-300">
+          <a href="#" className="hover:text-blue-500 transition duration-300">
             Home
           </a>
-          <a href="/about" className="hover:text-blue-500 transition duration-200">
-            About
+          <a href="#" className="hover:text-blue-500 transition duration-300">
+            About Us
           </a>
-          <div className="relative group">
-            <button className="hover:text-blue-500 transition duration-200 flex items-center">
-              Projects
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 ml-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div className="absolute top-full left-0 pt-2 w-40 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
-              <a href="/projects/sale" className="block px-4 py-2 hover:bg-gray-100">
-                For Sale
-              </a>
-              <a href="/projects/rent" className="block px-4 py-2 hover:bg-gray-100">
-                For Rent
-              </a>
-            </div>
-          </div>
-          <a href="/contact" className="hover:text-blue-500 transition duration-200">
+          <a href="#" className="hover:text-blue-500 transition duration-300">
+            Properties
+          </a>
+          <a href="#" className="hover:text-blue-500 transition duration-300">
+            Services
+          </a>
+          <a href="#" className="hover:text-blue-500 transition duration-300">
             Contact
           </a>
         </nav>
-        <div id="Header_4" className="hidden md:flex items-center space-x-4">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-600 hover:text-blue-500 focus:outline-none transition duration-200"
-          >
+      </div>
+      <div id="Header_5" className="flex items-center">
+        <button
+          id="Header_6"
+          className="mr-4 focus:outline-none"
+          onClick={() => setIsDarkMode(!isDarkMode)}
+        >
+          {isDarkMode ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              fill="currentColor"
+              className="w-6 h-6 text-yellow-400"
+            >
+              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 text-gray-700"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                fillRule="evenodd"
+                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                clipRule="evenodd"
               />
             </svg>
-          </button>
-          <a
-            href="/login"
-            className="px-4 py-2 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition duration-200"
-          >
-            Login
-          </a>
-          <a
-            href="/signup"
-            className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition duration-200"
-          >
-            Sign Up
-          </a>
-        </div>
-        <button
-          id="Header_5"
-          className="md:hidden text-gray-600 hover:text-blue-500 focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
+          )}
         </button>
-      </div>
-
-      {isOpen && (
-        <div
-          id="Header_6"
-          className="md:hidden fixed top-0 left-0 w-full h-screen bg-white z-50 flex flex-col items-center justify-center space-y-8 text-center"
-        >
+        {isLoggedIn ? (
           <button
-            className="absolute top-4 right-4 text-gray-600 hover:text-blue-500"
-            onClick={() => setIsOpen(false)}
+            id="Header_7"
+            className="px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300"
+            onClick={handleLogout}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            Logout
           </button>
-          <a href="/" className="text-xl hover:text-blue-500">
-            Home
-          </a>
-          <a href="/about" className="text-xl hover:text-blue-500">
-            About
-          </a>
-          <a href="/projects/sale" className="text-xl hover:text-blue-500">
-            For Sale
-          </a>
-          <a href="/projects/rent" className="text-xl hover:text-blue-500">
-            For Rent
-          </a>
-          <a href="/contact" className="text-xl hover:text-blue-500">
-            Contact
-          </a>
-          <a href="/login" className="px-6 py-3 text-blue-600 border border-blue-600 rounded-md">
-            Login
-          </a>
-          <a href="/signup" className="px-6 py-3 text-white bg-blue-600 rounded-md">
-            Sign Up
-          </a>
-        </div>
-      )}
+        ) : (
+          <button
+            id="Header_8"
+            className="px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300"
+            onClick={() => {
+              // Handle login functionality
+              handleLogin('user@example.com', 'password');
+            }}
+          >
+            Contact Agent
+          </button>
+        )}
+      </div>
     </header>
   );
 };
