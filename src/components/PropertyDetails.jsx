@@ -9,11 +9,18 @@ const PropertyDetails = () => {
     email: '',
     message: ''
   });
+  const [propertyFormData, setPropertyFormData] = useState({
+    title: '',
+    description: '',
+    price: '',
+    imageUrl: '',
+    location: ''
+  });
 
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`/api/properties/detail/${1}`);
+        const response = await axios.get(`/properties/${1}`);
         setProperty(response.data);
       } catch (error) {
         console.error('Error fetching property details:', error);
@@ -25,6 +32,10 @@ const PropertyDetails = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePropertyFormChange = (e) => {
+    setPropertyFormData({ ...propertyFormData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -40,6 +51,27 @@ const PropertyDetails = () => {
       });
     } catch (error) {
       console.error('Error sending message:', error);
+    }
+  };
+
+  const handlePropertySubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('/properties', propertyFormData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert('Property added successfully!');
+      setPropertyFormData({
+        title: '',
+        description: '',
+        price: '',
+        imageUrl: '',
+        location: ''
+      });
+    } catch (error) {
+      console.error('Error adding property:', error);
+      alert('Failed to add property. Please try again.');
     }
   };
 
@@ -68,6 +100,76 @@ const PropertyDetails = () => {
           </div>
         </div>
         <div id="PropertyDetails_7">
+          <h3 className="text-xl font-bold mb-4">Add New Property</h3>
+          <form onSubmit={handlePropertySubmit} className="mb-8">
+            <div className="mb-4">
+              <label htmlFor="title" className="block text-gray-700 font-bold mb-2">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={propertyFormData.title}
+                onChange={handlePropertyFormChange}
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="description" className="block text-gray-700 font-bold mb-2">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                value={propertyFormData.description}
+                onChange={handlePropertyFormChange}
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="price" className="block text-gray-700 font-bold mb-2">Price</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value={propertyFormData.price}
+                onChange={handlePropertyFormChange}
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="imageUrl" className="block text-gray-700 font-bold mb-2">Image URL</label>
+              <input
+                type="text"
+                id="imageUrl"
+                name="imageUrl"
+                value={propertyFormData.imageUrl}
+                onChange={handlePropertyFormChange}
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="location" className="block text-gray-700 font-bold mb-2">Location</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={propertyFormData.location}
+                onChange={handlePropertyFormChange}
+                className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+            >
+              Add Property
+            </button>
+          </form>
+
           <h3 className="text-xl font-bold mb-4">Contact Us</h3>
           <form onSubmit={handleSubmit}>
             <div id="PropertyDetails_8" className="mb-4">
