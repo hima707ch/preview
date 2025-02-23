@@ -1,5 +1,5 @@
 import React from 'react'
-import Body from "./components/Body";
+import Body from "./components/body";
 
 const App = () => {
   return (
