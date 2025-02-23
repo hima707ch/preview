@@ -1,48 +1,49 @@
 import React from 'react';
 import images from '../assets/images';
 
-const AboutSection = () => {
+export default function AboutSection() {
   return (
-    <section className="bg-white py-12" id="AboutSection_1">
+    <section className="bg-gray-100 py-16" id="AboutSection_1">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2" id="AboutSection_2">
-            <img src={images[0]} alt="Blogger" className="w-full rounded-lg shadow-lg" id="AboutSection_3" />
+        <h2 className="text-4xl font-bold mb-8 text-center" id="AboutSection_2">About Us</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p className="text-lg mb-6" id="AboutSection_3">
+              At Acme Real Estate, we are dedicated to helping our clients find their dream homes and navigate the complex world of real estate. Founded in 2005 by industry veterans John Smith and Jane Doe, our company has grown to become one of the most trusted names in the business.
+            </p>
+            <p className="text-lg mb-6" id="AboutSection_4">
+              Our mission is to provide exceptional service and expertise to every client, whether they are buying, selling, or investing in real estate. We believe in building long-term relationships based on trust, transparency, and integrity.
+            </p>
+            <p className="text-lg" id="AboutSection_5">
+              With a team of experienced agents and a commitment to staying ahead of industry trends, we are well-equipped to handle all of your real estate needs. Let us help you achieve your goals and make your real estate dreams a reality.
+            </p>
           </div>
-          <div className="md:w-1/2 mt-8 md:mt-0 md:ml-12" id="AboutSection_4">
-            <h2 className="text-3xl font-bold mb-4" id="AboutSection_5">About Me</h2>
-            <p className="text-gray-700 leading-relaxed mb-6" id="AboutSection_6">
-              Hi, I'm Jane Doe, a passionate blogger with a love for sharing my thoughts and experiences. I started this blog in 2015 as a creative outlet and it has since grown into a thriving community.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-6" id="AboutSection_7">
-              My mission is to inspire, inform, and connect with readers through engaging content. I cover a wide range of topics including lifestyle, travel, food, and personal development.
-            </p>
-            <h3 className="text-2xl font-bold mb-4" id="AboutSection_8">Blog Milestones</h3>
-            <ul className="timeline" id="AboutSection_9">
-              <li className="timeline-item" id="AboutSection_10">
-                <div className="timeline-badge" id="AboutSection_11">2015</div>
-                <div className="timeline-panel" id="AboutSection_12">
-                  <p id="AboutSection_13">Started the blog as a personal project</p>
+          <div>
+            <img src={images[0]} alt="Team Photo" className="w-full h-auto rounded-lg shadow-lg" id="AboutSection_6" />
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold mb-4" id="AboutSection_7">Company Timeline</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white rounded-lg shadow-md p-6" id="AboutSection_8">
+                  <h4 className="text-xl font-bold mb-2" id="AboutSection_9">2005</h4>
+                  <p id="AboutSection_10">Acme Real Estate is founded by John Smith and Jane Doe</p>
                 </div>
-              </li>
-              <li className="timeline-item" id="AboutSection_14">
-                <div className="timeline-badge" id="AboutSection_15">2017</div>
-                <div className="timeline-panel" id="AboutSection_16">
-                  <p id="AboutSection_17">Reached 100,000 monthly readers</p>
+                <div className="bg-white rounded-lg shadow-md p-6" id="AboutSection_11">
+                  <h4 className="text-xl font-bold mb-2" id="AboutSection_12">2010</h4>
+                  <p id="AboutSection_13">Expanded to multiple locations across the state</p>
                 </div>
-              </li>
-              <li className="timeline-item" id="AboutSection_18">
-                <div className="timeline-badge" id="AboutSection_19">2020</div>
-                <div className="timeline-panel" id="AboutSection_20">
-                  <p id="AboutSection_21">Published my first book based on the blog</p>
+                <div className="bg-white rounded-lg shadow-md p-6" id="AboutSection_14">
+                  <h4 className="text-xl font-bold mb-2" id="AboutSection_15">2015</h4>
+                  <p id="AboutSection_16">Recognized as a top real estate company in the region</p>
                 </div>
-              </li>
-            </ul>
+                <div className="bg-white rounded-lg shadow-md p-6" id="AboutSection_17">
+                  <h4 className="text-xl font-bold mb-2" id="AboutSection_18">2020</h4>
+                  <p id="AboutSection_19">Launched innovative online platform for virtual home tours</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}
