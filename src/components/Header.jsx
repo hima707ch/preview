@@ -7,6 +7,13 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [properties, setProperties] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +27,44 @@ const Header = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/${authMode}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
+      if (response.ok) {
+        if (authMode === 'login') {
+          localStorage.setItem('token', data.token);
+          setIsLoggedIn(true);
+        }
+        setShowAuthModal(false);
+        setFormData({ username: '', password: '' });
+      } else {
+        setError(data.error);
+      }
+    } catch (error) {
+      setError('Authentication failed. Please try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
   };
 
   const fetchProperties = async () => {
@@ -60,7 +105,7 @@ const Header = () => {
           <a href="/services" className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white" id="Header_5">Services</a>
           <a href="/contact" className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white" id="Header_6">Contact</a>
         </nav>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           <button
             className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
             onClick={toggleTheme}
@@ -69,15 +114,77 @@ const Header = () => {
           >
             {isDarkMode ? <FiSun className="h-6 w-6 text-white" /> : <FiMoon className="h-6 w-6 text-gray-600" />}
           </button>
-          <a
-            href="/contact"
-            className="ml-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-            id="Header_8"
-          >
-            Contact Us
-          </a>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowAuthModal(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+            >
+              Login/Register
+            </button>
+          )}
         </div>
       </div>
+
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg w-96">
+            <h2 className="text-2xl font-bold mb-4">{authMode === 'login' ? 'Login' : 'Register'}</h2>
+            <form onSubmit={handleAuth}>
+              <div className="mb-4">
+                <label className="block text-gray-700 dark:text-gray-300 mb-2">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+              >
+                {authMode === 'login' ? 'Login' : 'Register'}
+              </button>
+            </form>
+            <p className="mt-4 text-center">
+              {authMode === 'login' ? "Don't have an account? " : 'Already have an account? '}
+              <button
+                className="text-blue-600 hover:text-blue-700"
+                onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}
+              >
+                {authMode === 'login' ? 'Register' : 'Login'}
+              </button>
+            </p>
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowAuthModal(false)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert" id="Header_9">
           <strong className="font-bold">Error!</strong> {error}
