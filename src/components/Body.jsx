@@ -1,25 +1,25 @@
 import React from 'react';
 import Header from './Header';
-import Hero from './Hero';
-import About from './About';
-import Feature from './Feature';
-import Testimonials from './Testimonials';
-import WhyUs from './WhyUs';
-import CTA from './CTA';
 import Footer from './Footer';
+import HeroSection from './HeroSection';
+import PropertiesListing from './PropertiesListing';
+import PropertyDetails from './PropertyDetails';
+import Login from './Login';
+import Registration from './Registration';
+import Dashboard from './Dashboard';
 
 const Body = () => {
   return (
-    <>
+    <div>
       <Header />
-      <Hero />
-      <About />
-      <Feature />
-      <Testimonials />
-      <WhyUs />
-      <CTA />
+      <HeroSection />
+      <PropertiesListing />
+      <PropertyDetails />
+      <Login />
+      <Registration />
+      <Dashboard />
       <Footer />
-    </>
+    </div>
   );
 };
 
