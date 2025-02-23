@@ -13,7 +13,7 @@ const PropertyDetails = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`/api/properties/detail/${propertyId}`);
+        const response = await axios.get(`/api/properties/detail/${1}`);
         setProperty(response.data);
       } catch (error) {
         console.error('Error fetching property details:', error);
