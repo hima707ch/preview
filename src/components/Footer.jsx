@@ -1,47 +1,62 @@
 import React from 'react';
+import images from '../assets/images';
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer id="Footer_1" className="bg-gray-800 text-gray-400 py-8">
+    <footer id="Footer_1" className="bg-gray-800 text-white py-8">
       <div id="Footer_2" className="container mx-auto flex flex-wrap justify-between">
-        <div id="Footer_3" className="w-full md:w-1/3 mb-4 md:mb-0">
-          <h3 id="Footer_4" className="text-xl font-semibold text-white mb-4">Contact Us</h3>
-          <p id="Footer_5" className="mb-2">123 Main Street</p>
-          <p id="Footer_6" className="mb-2">City, State 12345</p>
-          <p id="Footer_7" className="mb-2">Phone: (123) 456-7890</p>
-          <p id="Footer_8">Email: info@example.com</p>
+        <div id="Footer_3" className="w-full md:w-1/3 mb-8 md:mb-0">
+          <h3 id="Footer_4" className="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul id="Footer_5" className="space-y-2">
+            <li id="Footer_6"><a href="/about" className="hover:text-gray-300">About</a></li>
+            <li id="Footer_7"><a href="/properties" className="hover:text-gray-300">Properties</a></li>
+            <li id="Footer_8"><a href="/services" className="hover:text-gray-300">Services</a></li>
+            <li id="Footer_9"><a href="/careers" className="hover:text-gray-300">Careers</a></li>
+            <li id="Footer_10"><a href="/contact" className="hover:text-gray-300">Contact</a></li>
+          </ul>
         </div>
-        <div id="Footer_9" className="w-full md:w-1/3 mb-4 md:mb-0">
-          <h3 id="Footer_10" className="text-xl font-semibold text-white mb-4">Follow Us</h3>
-          <div id="Footer_11" className="flex space-x-4">
-            <a id="Footer_12" href="#" className="text-gray-400 hover:text-white">
-              <i id="Footer_13" className="fab fa-facebook fa-lg"></i>
+        <div id="Footer_11" className="w-full md:w-1/3 mb-8 md:mb-0">
+          <h3 id="Footer_12" className="text-lg font-semibold mb-4">Connect with Us</h3>
+          <div id="Footer_13" className="flex space-x-4">
+            <a href="#" id="Footer_14">
+              <img src={images[0]} alt="Facebook" className="w-8 h-8" />
             </a>
-            <a id="Footer_14" href="#" className="text-gray-400 hover:text-white">
-              <i id="Footer_15" className="fab fa-twitter fa-lg"></i>
+            <a href="#" id="Footer_15">
+              <img src={images[1]} alt="Twitter" className="w-8 h-8" />
             </a>
-            <a id="Footer_16" href="#" className="text-gray-400 hover:text-white">
-              <i id="Footer_17" className="fab fa-instagram fa-lg"></i>
-            </a>
-            <a id="Footer_18" href="#" className="text-gray-400 hover:text-white">
-              <i id="Footer_19" className="fab fa-linkedin fa-lg"></i>
+            <a href="#" id="Footer_16">
+              <img src={images[2]} alt="Instagram" className="w-8 h-8" />
             </a>
           </div>
         </div>
-        <div id="Footer_20" className="w-full md:w-1/3">
-          <h3 id="Footer_21" className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-          <ul id="Footer_22" className="space-y-2">
-            <li id="Footer_23"><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
-            <li id="Footer_24"><a href="/about" className="text-gray-400 hover:text-white">About</a></li>
-            <li id="Footer_25"><a href="/blog" className="text-gray-400 hover:text-white">Blog</a></li>
-            <li id="Footer_26"><a href="/careers" className="text-gray-400 hover:text-white">Careers</a></li>
-            <li id="Footer_27"><a href="/contact" className="text-gray-400 hover:text-white">Contact</a></li>
-          </ul>
+        <div id="Footer_17" className="w-full md:w-1/3">
+          <h3 id="Footer_18" className="text-lg font-semibold mb-4">Newsletter Signup</h3>
+          <form id="Footer_19">
+            <div id="Footer_20" className="flex items-center border-b border-gray-600 py-2">
+              <input
+                id="Footer_21"
+                className="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="email"
+                placeholder="Enter your email"
+              />
+              <button
+                id="Footer_22"
+                className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded"
+                type="submit"
+              >
+                Subscribe
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      <div id="Footer_28" className="mt-8 text-center">
-        <p id="Footer_29">&copy; 2023 Your Company. All rights reserved.</p>
+      <div id="Footer_23" className="container mx-auto mt-8">
+        <p id="Footer_24" className="text-center text-gray-500 text-sm">
+          &copy; 2023 Your Company. All rights reserved.
+        </p>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
