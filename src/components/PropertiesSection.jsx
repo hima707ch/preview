@@ -8,8 +8,11 @@ const PropertiesSection = () => {
     title: '',
     description: '',
     price: '',
-    imageUrl: '',
-    location: ''
+    address: '',
+    bedrooms: '',
+    bathrooms: '',
+    area: '',
+    imageUrls: []
   });
 
   useEffect(() => {
@@ -66,7 +69,17 @@ const PropertiesSection = () => {
     const { name, value } = e.target;
     setNewProperty(prev => ({
       ...prev,
-      [name]: value
+      [name]: name === 'price' || name === 'bedrooms' || name === 'bathrooms' || name === 'area' 
+        ? Number(value) 
+        : value
+    }));
+  };
+
+  const handleImageUrlChange = (e) => {
+    const urls = e.target.value.split(',').map(url => url.trim());
+    setNewProperty(prev => ({
+      ...prev,
+      imageUrls: urls
     }));
   };
 
@@ -82,18 +95,25 @@ const PropertiesSection = () => {
         },
         body: JSON.stringify(newProperty),
       });
+      if (!response.ok) {
+        throw new Error('Failed to add property');
+      }
       const data = await response.json();
       setProperties([...properties, data]);
       setNewProperty({
         title: '',
         description: '',
         price: '',
-        imageUrl: '',
-        location: ''
+        address: '',
+        bedrooms: '',
+        bathrooms: '',
+        area: '',
+        imageUrls: []
       });
       setShowForm(false);
     } catch (error) {
       console.error('Error adding property:', error);
+      alert('Failed to add property. Please try again.');
     }
   };
 
@@ -133,21 +153,44 @@ const PropertiesSection = () => {
               />
               <input
                 type="text"
-                name="location"
-                value={newProperty.location}
+                name="address"
+                value={newProperty.address}
                 onChange={handleInputChange}
-                placeholder="Location"
+                placeholder="Address"
                 className="border p-2 rounded"
                 required
               />
               <input
-                type="text"
-                name="imageUrl"
-                value={newProperty.imageUrl}
+                type="number"
+                name="bedrooms"
+                value={newProperty.bedrooms}
                 onChange={handleInputChange}
-                placeholder="Image URL"
+                placeholder="Number of Bedrooms"
                 className="border p-2 rounded"
-                required
+              />
+              <input
+                type="number"
+                name="bathrooms"
+                value={newProperty.bathrooms}
+                onChange={handleInputChange}
+                placeholder="Number of Bathrooms"
+                className="border p-2 rounded"
+              />
+              <input
+                type="number"
+                name="area"
+                value={newProperty.area}
+                onChange={handleInputChange}
+                placeholder="Area in sq ft"
+                className="border p-2 rounded"
+              />
+              <input
+                type="text"
+                name="imageUrls"
+                value={newProperty.imageUrls.join(', ')}
+                onChange={handleImageUrlChange}
+                placeholder="Image URLs (comma-separated)"
+                className="border p-2 rounded md:col-span-2"
               />
               <textarea
                 name="description"
@@ -175,7 +218,7 @@ const PropertiesSection = () => {
               id={`PropertiesSection_4_${property.id}`}
             >
               <img
-                src={property.imageUrl || images[Math.floor(Math.random() * images.length)]}
+                src={property.imageUrls?.[0] || images[Math.floor(Math.random() * images.length)]}
                 alt={property.title}
                 className="w-full h-48 object-cover"
                 id={`PropertiesSection_5_${property.id}`}
@@ -185,10 +228,16 @@ const PropertiesSection = () => {
                   {property.title}
                 </h3>
                 <p className="text-gray-600 font-bold" id={`PropertiesSection_8_${property.id}`}>${property.price}</p>
+                <p className="text-gray-500">{property.address}</p>
+                <div className="mt-2 flex gap-4">
+                  <span>{property.bedrooms} beds</span>
+                  <span>{property.bathrooms} baths</span>
+                  <span>{property.area} sq ft</span>
+                </div>
                 <div className="mt-4 flex justify-between" id={`PropertiesSection_9_${property.id}`}>
                   <button
                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => handleUpdate(property.id, { /* Updated property data */ })}
+                    onClick={() => handleUpdate(property.id, property)}
                     id={`PropertiesSection_10_${property.id}`}
                   >
                     Update
