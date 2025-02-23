@@ -3,12 +3,6 @@ import images from '../assets/images';
 
 const PropertiesSection = () => {
   const [properties, setProperties] = useState([]);
-  const [newProperty, setNewProperty] = useState({
-    title: '',
-    location: '',
-    price: '',
-    description: ''
-  });
 
   useEffect(() => {
     fetchProperties();
@@ -16,7 +10,7 @@ const PropertiesSection = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await fetch('/api/listings');
+      const response = await fetch('/properties');
       const data = await response.json();
       setProperties(data);
     } catch (error) {
@@ -24,128 +18,72 @@ const PropertiesSection = () => {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewProperty(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleDelete = async (id) => {
     try {
-      const response = await fetch('/api/listings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newProperty),
+      await fetch(`/properties/${id}`, {
+        method: 'DELETE',
       });
-      if (response.ok) {
-        fetchProperties();
-        setNewProperty({
-          title: '',
-          location: '',
-          price: '',
-          description: ''
-        });
-      }
+      setProperties(properties.filter((property) => property.id !== id));
     } catch (error) {
-      console.error('Error adding property:', error);
+      console.error('Error deleting property:', error);
     }
   };
 
-  const fetchPropertyDetails = async (id) => {
+  const handleUpdate = async (id, updatedProperty) => {
     try {
-      const response = await fetch(`/api/listings/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Property details:', data);
-      } else if (response.status === 404) {
-        console.log('Property not found');
-      } else {
-        console.error('Error fetching property details');
-      }
+      await fetch(`/properties/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProperty),
+      });
+      setProperties(
+        properties.map((property) =>
+          property.id === id ? { ...property, ...updatedProperty } : property
+        )
+      );
     } catch (error) {
-      console.error('Error fetching property details:', error);
+      console.error('Error updating property:', error);
     }
   };
 
   return (
-    <section className="bg-gray-100 py-12" id="PropertiesSection_1">
+    <section className="bg-gradient-to-r from-blue-100 to-purple-200 py-12" id="PropertiesSection_1">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold mb-8" id="PropertiesSection_2">Featured Properties</h2>
-        
-        <form onSubmit={handleSubmit} className="mb-8 bg-white p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-4">Add New Property</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="title"
-              value={newProperty.title}
-              onChange={handleInputChange}
-              placeholder="Property Title"
-              className="border p-2 rounded"
-              required
-            />
-            <input
-              type="text"
-              name="location"
-              value={newProperty.location}
-              onChange={handleInputChange}
-              placeholder="Location"
-              className="border p-2 rounded"
-              required
-            />
-            <input
-              type="number"
-              name="price"
-              value={newProperty.price}
-              onChange={handleInputChange}
-              placeholder="Price"
-              className="border p-2 rounded"
-              required
-            />
-            <textarea
-              name="description"
-              value={newProperty.description}
-              onChange={handleInputChange}
-              placeholder="Description"
-              className="border p-2 rounded"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-          >
-            Add Property
-          </button>
-        </form>
-
+        <h2 className="text-4xl font-bold mb-8 text-center text-gray-800" id="PropertiesSection_2">Featured Properties</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="PropertiesSection_3">
           {properties.map((property) => (
-            <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300" id={`PropertiesSection_${property.id}`}>
-              <img src={images[Math.floor(Math.random() * images.length)]} alt={property.title} className="w-full h-48 object-cover" id={`PropertiesSection_${property.id}_img`} />
-              <div className="p-6" id={`PropertiesSection_${property.id}_details`}>
-                <h3 className="text-xl font-semibold mb-2" id={`PropertiesSection_${property.id}_title`}>{property.title}</h3>
-                <p className="text-gray-600 mb-4" id={`PropertiesSection_${property.id}_location`}>{property.location}</p>
-                <p className="text-gray-800 font-semibold mb-4" id={`PropertiesSection_${property.id}_price`}>${property.price}</p>
-                <p className="text-gray-700 mb-6" id={`PropertiesSection_${property.id}_description`}>{property.description}</p>
-                <div className="flex justify-between" id={`PropertiesSection_${property.id}_buttons`}>
+            <div
+              key={property.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+              id={`PropertiesSection_4_${property.id}`}
+            >
+              <img
+                src={images[Math.floor(Math.random() * images.length)]}
+                alt={property.headline}
+                className="w-full h-48 object-cover"
+                id={`PropertiesSection_5_${property.id}`}
+              />
+              <div className="p-6" id={`PropertiesSection_6_${property.id}`}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800" id={`PropertiesSection_7_${property.id}`}>
+                  {property.headline}
+                </h3>
+                <p className="text-gray-600 font-bold" id={`PropertiesSection_8_${property.id}`}>${property.price}</p>
+                <div className="mt-4 flex justify-between" id={`PropertiesSection_9_${property.id}`}>
                   <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                    onClick={() => fetchPropertyDetails(property.id)}
-                    id={`PropertiesSection_${property.id}_detailsBtn`}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleUpdate(property.id, { /* Updated property data */ })}
+                    id={`PropertiesSection_10_${property.id}`}
                   >
-                    More Details
+                    Update
                   </button>
                   <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300"
-                    id={`PropertiesSection_${property.id}_visitBtn`}
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDelete(property.id)}
+                    id={`PropertiesSection_11_${property.id}`}
                   >
-                    Schedule a Visit
+                    Delete
                   </button>
                 </div>
               </div>
