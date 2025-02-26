@@ -21,7 +21,7 @@ const testimonials = [
     name: 'Emma Davis',
     role: 'CEO',
     image: images[2],
-    content: 'A game-changer for our business. The ROI we've seen is incredible. Highly recommended!'
+    content: 'A game-changer for our business. The ROI weve seen is incredible. Highly recommended!'
   }
 ];
 

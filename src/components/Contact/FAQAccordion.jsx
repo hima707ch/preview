@@ -21,7 +21,7 @@ const FAQAccordion = () => {
         {
           id: 3,
           question: 'How can I track my order?',
-          answer: 'Once your order is shipped, you will receive a tracking number via email. You can use this number on our website or the courier's website to track your package in real-time.'
+          answer: 'Once your order is shipped, you will receive a tracking number via email. You can use this number on our website or the couriers website to track your package in real-time.'
         },
         {
           id: 4,

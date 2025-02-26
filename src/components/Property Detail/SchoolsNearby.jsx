@@ -17,7 +17,7 @@ const SchoolsNearby = () => {
       setSchools([
         {
           id: 1,
-          name: 'St. Mary's International School',
+          name: 'St. Mary s International School',
           distance: '0.5 km',
           rating: 4.8,
           image: images[0],

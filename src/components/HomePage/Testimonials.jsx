@@ -24,7 +24,7 @@ const Testimonials = () => {
       name: 'Emily Rodriguez',
       role: 'Product Manager',
       image: images[2],
-      content: 'The team's ability to understand our vision and translate it into reality is remarkable. They've become an invaluable partner in our success journey.',
+      content: 'The teams ability to understand our vision and translate it into reality is remarkable. Theyve become an invaluable partner in our success journey.',
       rating: 4
     }
   ];
