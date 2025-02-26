@@ -17,25 +17,25 @@ const Header = () => {
     <header id="Header_1" className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          <div id="Header_2" className="flex items-center space-x-2">
-            <img src={images[0]} alt="Logo" className="h-10 w-10 rounded-full" />
-            <span className={`text-2xl font-bold ${isScrolled ? 'text-gray-800' : 'text-white'}`}>Brand</span>
+          <div id="Header_2" className="flex items-center">
+            <img src={images[0]} alt="Logo" className="h-10 w-auto" />
+            <h1 className="ml-3 text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Brand</h1>
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-8">
+            <nav id="Header_3" className="flex space-x-6">
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">About</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Services</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Contact</a>
+            </nav>
+            <button id="Header_4" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5">
+              Get Started
+            </button>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            <a id="Header_3" href="#" className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-blue-500 transition-colors duration-300`}>Home</a>
-            <a id="Header_4" href="#" className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-blue-500 transition-colors duration-300`}>About</a>
-            <a id="Header_5" href="#" className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-blue-500 transition-colors duration-300`}>Services</a>
-            <a id="Header_6" href="#" className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-blue-500 transition-colors duration-300`}>Contact</a>
-          </nav>
-
-          <div className="hidden md:flex items-center space-x-4">
-            <button id="Header_7" className="px-6 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300">Sign In</button>
-            <button id="Header_8" className="px-6 py-2 rounded-full border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300">Sign Up</button>
-          </div>
-
-          <button id="Header_9" onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-gray-600 hover:text-gray-900">
-            <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+          <button id="Header_5" onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-gray-700">
+            <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
               {isMenuOpen ? (
                 <path d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -46,14 +46,15 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div id="Header_10" className="md:hidden py-4">
+          <div id="Header_6" className="md:hidden py-4">
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-gray-800 hover:text-blue-500 transition-colors duration-300">Home</a>
-              <a href="#" className="text-gray-800 hover:text-blue-500 transition-colors duration-300">About</a>
-              <a href="#" className="text-gray-800 hover:text-blue-500 transition-colors duration-300">Services</a>
-              <a href="#" className="text-gray-800 hover:text-blue-500 transition-colors duration-300">Contact</a>
-              <button className="px-6 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300">Sign In</button>
-              <button className="px-6 py-2 rounded-full border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-300">Sign Up</button>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">About</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Services</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Contact</a>
+              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 w-full">
+                Get Started
+              </button>
             </nav>
           </div>
         )}
