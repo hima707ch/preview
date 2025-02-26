@@ -7,19 +7,15 @@ import ServicesSection from './ServicesSection';
 import TestimonialsSection from './TestimonialsSection';
 import CTASection from './CTASection';
 import Footer from './Footer';
+import HomePage from './HomePage/Body.jsx'
+import PropertyListingPage from './PropertyListingPage/Body.jsx'
 
 const Body = () => {
   return (
-    <>
-      <Header />
-      <HeroSection />
-      <AboutSection />
-      <PropertiesSection />
-      <ServicesSection />
-      <TestimonialsSection />
-      <CTASection />
-      <Footer />
-    </>
+    <div>
+      <HomePage/>
+      <PropertyListingPage/>
+    </div>
   );
 };
 
