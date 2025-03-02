@@ -24,10 +24,13 @@ const Header = () => {
           
           <div className="hidden md:flex items-center space-x-8">
             <nav id="Header_3" className="flex space-x-8">
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Home</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">About</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Services</a>
-              <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Contact</a>
+              <a href="/home" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Home</a>
+              <a href="/login" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Login</a>
+              <a href="/dashboard" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Dashboard</a>
+              <a href="/property listings" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Property</a>
+              <a href="/property detail" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Details</a>
+              <a href="/contact" className="text-gray-700 hover:text-purple-600 transition-colors duration-300">Contact</a>
+
             </nav>
             
             <div id="Header_4" className="flex items-center space-x-4">

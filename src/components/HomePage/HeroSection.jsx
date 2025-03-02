@@ -23,7 +23,7 @@ const HeroSection = () => {
         </div>
         <div id="HeroSection_5" className="flex-1 relative">
           <img
-            src={images[0] || 'https://via.placeholder.com/600x400'}
+            src={images[3] || 'https://via.placeholder.com/600x400'}
             alt="Hero Image"
             className="rounded-lg shadow-2xl transform hover:scale-105 transition duration-500 w-full max-w-2xl"
           />
